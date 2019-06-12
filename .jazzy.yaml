@@ -1,0 +1,7 @@
+# Offenbach document generator jazzy settings
+
+copyright: Copyright 2019 Move Upwards
+author: Move Upwards
+xcodebuild_arguments: [-target, Offenbach-iOS]
+clean: true
+output: ./Documentation
