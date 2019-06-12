@@ -9,6 +9,8 @@
 import Alamofire
 import Foundation
 
+public typealias Headers = [String: String]?
+
 open class Client: ClientProtocol {
     // MARK: Public functions
 
