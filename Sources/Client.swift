@@ -97,7 +97,7 @@ open class Client: ClientProtocol {
     @discardableResult
     public func upload<T: Decodable>(action: String,
                                      parameters: Parameters = [:],
-                                     file: FileProcotol,
+                                     file: FileProtocol,
                                      progress: @escaping (_ progress: Double) -> Void,
                                      completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
         return backgroundManager

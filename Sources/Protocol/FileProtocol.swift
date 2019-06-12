@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol FileProcotol {
+public protocol FileProtocol {
     /// The file's local url.
     var url: URL? { get }
 
@@ -30,7 +30,7 @@ public protocol FileProcotol {
     init(data: Data, filename: String, mimetype: String, date: Date)
 }
 
-public extension FileProcotol {
+public extension FileProtocol {
     var documentsDirectoryUrl: URL? {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     }
