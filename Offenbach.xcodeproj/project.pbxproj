@@ -30,10 +30,6 @@
 		97219AB2C59F33232929BBE7 /* Pods_Offenbach_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F669857C5DE97A8B8D9820 /* Pods_Offenbach_tvOS.framework */; };
 		9C8D3D0CEE4E1114EB57D9AC /* Pods_Offenbach_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1FA4EC68DA432CF643FEA2 /* Pods_Offenbach_macOS.framework */; };
 		BCFDD7455228FB03E3B6522D /* Pods_Offenbach_macOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5398C43A54166CDFA9E4A0C /* Pods_Offenbach_macOSTests.framework */; };
-		F376B8C222B12F95005FF699 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C122B12F95005FF699 /* ClientProtocol.swift */; };
-		F376B8C322B12F95005FF699 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C122B12F95005FF699 /* ClientProtocol.swift */; };
-		F376B8C422B12F95005FF699 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C122B12F95005FF699 /* ClientProtocol.swift */; };
-		F376B8C522B12F95005FF699 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C122B12F95005FF699 /* ClientProtocol.swift */; };
 		F376B8C722B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
 		F376B8C822B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
 		F376B8C922B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
@@ -153,7 +149,6 @@
 		CA5B76ADFF7CC5F0C8946586 /* Pods-Offenbach-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Offenbach-tvOSTests/Pods-Offenbach-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DAB19B0CC3CF7043BDB71F81 /* Pods-Offenbach-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Offenbach-tvOS/Pods-Offenbach-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E69FF47DFC8440794397C5BA /* Pods-Offenbach-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-macOS.release.xcconfig"; path = "Target Support Files/Pods-Offenbach-macOS/Pods-Offenbach-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		F376B8C122B12F95005FF699 /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 		F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigProtocol.swift; sourceTree = "<group>"; };
 		F376B8D122B13077005FF699 /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		F376B8D722B13427005FF699 /* FileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProtocol.swift; sourceTree = "<group>"; };
@@ -351,7 +346,6 @@
 				3D9C42A122745900000A6585 /* TokenProtocol.swift */,
 				F376B8D722B13427005FF699 /* FileProtocol.swift */,
 				F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */,
-				F376B8C122B12F95005FF699 /* ClientProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -969,7 +963,6 @@
 			files = (
 				3D9C42A222745900000A6585 /* TokenProtocol.swift in Sources */,
 				F376B8DF22B13C96005FF699 /* Client.swift in Sources */,
-				F376B8C222B12F95005FF699 /* ClientProtocol.swift in Sources */,
 				F376B8D222B13077005FF699 /* ClientError.swift in Sources */,
 				F376B8D822B13427005FF699 /* FileProtocol.swift in Sources */,
 				F376B8C722B12FA0005FF699 /* ConfigProtocol.swift in Sources */,
@@ -982,7 +975,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9C42B1227459C1000A6585 /* TokenProtocol.swift in Sources */,
-				F376B8C322B12F95005FF699 /* ClientProtocol.swift in Sources */,
 				F376B8E022B145CD005FF699 /* Client.swift in Sources */,
 				F376B8E322B145D1005FF699 /* Config.swift in Sources */,
 				F376B8D322B13077005FF699 /* ClientError.swift in Sources */,
@@ -996,7 +988,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9C42BF227459F6000A6585 /* TokenProtocol.swift in Sources */,
-				F376B8C422B12F95005FF699 /* ClientProtocol.swift in Sources */,
 				F376B8E122B145CE005FF699 /* Client.swift in Sources */,
 				F376B8E422B145D2005FF699 /* Config.swift in Sources */,
 				F376B8D422B13077005FF699 /* ClientError.swift in Sources */,
@@ -1010,7 +1001,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9C42CD22745A28000A6585 /* TokenProtocol.swift in Sources */,
-				F376B8C522B12F95005FF699 /* ClientProtocol.swift in Sources */,
 				F376B8E222B145CF005FF699 /* Client.swift in Sources */,
 				F376B8E522B145D2005FF699 /* Config.swift in Sources */,
 				F376B8D522B13077005FF699 /* ClientError.swift in Sources */,

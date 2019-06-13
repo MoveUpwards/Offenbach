@@ -11,24 +11,39 @@ import Foundation
 
 public typealias Headers = [String: String]?
 
-open class Client: ClientProtocol {
+open class Client {
     // MARK: Public functions
 
     @discardableResult
-    public func set(config: ConfigProtocol) -> ClientProtocol {
+    public func set(config: ConfigProtocol) -> Client {
         self.config = config
 
         return self
     }
 
     @discardableResult
-    public func set(token: TokenProtocol?) -> ClientProtocol {
-        var headers = Config.headers
-        if let apiKey = token?.apiKey {
-            headers?["apikey"] = apiKey
-        } else if let token = token?.jwt {
-            headers?["Authorization"] = "Bearer \(token)"
+    public func set(jwt: TokenProtocol?) -> Client {
+        guard let token = jwt?.token else {
+            return self
         }
+
+        var headers = Config.headers
+        headers?["Authorization"] = "Bearer \(token)"
+
+        configureManager(with: headers)
+        backgroundConfigureManager(with: headers)
+
+        return self
+    }
+
+    @discardableResult
+    public func set(apiKey: TokenProtocol?) -> Client {
+        guard let token = apiKey?.token else {
+            return self
+        }
+
+        var headers = Config.headers
+        headers?["apikey"] = token
 
         configureManager(with: headers)
         backgroundConfigureManager(with: headers)

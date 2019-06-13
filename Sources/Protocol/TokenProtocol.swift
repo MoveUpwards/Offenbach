@@ -10,10 +10,5 @@ import Foundation
 
 public protocol TokenProtocol {
     /// The authentication jwt token
-    var jwt: String? { get set }
-
-    /// The authentication api key
-    var apiKey: String? { get set }
-
-    static func logout()
+    var token: String? { get set }
 }
