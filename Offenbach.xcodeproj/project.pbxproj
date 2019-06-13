@@ -9,47 +9,20 @@
 /* Begin PBXBuildFile section */
 		18CAC7DB77050DA7A84C4869 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B4ED681A8AF7C3D7119DFB /* Pods_Example.framework */; };
 		1946DA18716A9649148E3165 /* Pods_Offenbach_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6D5CC753864B01386DB96D /* Pods_Offenbach_iOSTests.framework */; };
-		306E16E739CD7A398B4B9407 /* Pods_Offenbach_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16F5D39534DF2436180E2D /* Pods_Offenbach_watchOS.framework */; };
 		3D9C42A222745900000A6585 /* TokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42A122745900000A6585 /* TokenProtocol.swift */; };
-		3D9C42B1227459C1000A6585 /* TokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42A122745900000A6585 /* TokenProtocol.swift */; };
-		3D9C42BF227459F6000A6585 /* TokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42A122745900000A6585 /* TokenProtocol.swift */; };
-		3D9C42CD22745A28000A6585 /* TokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42A122745900000A6585 /* TokenProtocol.swift */; };
 		3D9C42F62274604A000A6585 /* Offenbach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* Offenbach.framework */; };
 		3D9C42FC22746078000A6585 /* OffenbachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42D722745CDE000A6585 /* OffenbachTests.swift */; };
-		3D9C43062274611B000A6585 /* Offenbach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C42A92274599D000A6585 /* Offenbach.framework */; };
-		3D9C430C22746131000A6585 /* OffenbachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42D722745CDE000A6585 /* OffenbachTests.swift */; };
-		3D9C431622746198000A6585 /* Offenbach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C42C522745A07000A6585 /* Offenbach.framework */; };
-		3D9C431C227461AF000A6585 /* OffenbachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42D722745CDE000A6585 /* OffenbachTests.swift */; };
 		3D9C43242274629B000A6585 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C43232274629B000A6585 /* AppDelegate.swift */; };
 		3D9C43262274629B000A6585 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C43252274629B000A6585 /* ViewController.swift */; };
 		3D9C432B2274629C000A6585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C432A2274629C000A6585 /* Assets.xcassets */; };
 		3D9C432E2274629C000A6585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C432C2274629C000A6585 /* LaunchScreen.storyboard */; };
 		3D9C433422746323000A6585 /* Offenbach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* Offenbach.framework */; };
 		3D9C433522746323000A6585 /* Offenbach.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* Offenbach.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4614BA30EC59E53188634A87 /* Pods_Offenbach_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA7FE25F01FFE6F9CF9F28E /* Pods_Offenbach_tvOSTests.framework */; };
-		97219AB2C59F33232929BBE7 /* Pods_Offenbach_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F669857C5DE97A8B8D9820 /* Pods_Offenbach_tvOS.framework */; };
-		9C8D3D0CEE4E1114EB57D9AC /* Pods_Offenbach_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1FA4EC68DA432CF643FEA2 /* Pods_Offenbach_macOS.framework */; };
-		BCFDD7455228FB03E3B6522D /* Pods_Offenbach_macOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5398C43A54166CDFA9E4A0C /* Pods_Offenbach_macOSTests.framework */; };
 		F376B8C722B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
-		F376B8C822B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
-		F376B8C922B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
-		F376B8CA22B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
 		F376B8D222B13077005FF699 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D122B13077005FF699 /* ClientError.swift */; };
-		F376B8D322B13077005FF699 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D122B13077005FF699 /* ClientError.swift */; };
-		F376B8D422B13077005FF699 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D122B13077005FF699 /* ClientError.swift */; };
-		F376B8D522B13077005FF699 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D122B13077005FF699 /* ClientError.swift */; };
 		F376B8D822B13427005FF699 /* FileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D722B13427005FF699 /* FileProtocol.swift */; };
-		F376B8D922B13427005FF699 /* FileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D722B13427005FF699 /* FileProtocol.swift */; };
-		F376B8DA22B13427005FF699 /* FileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D722B13427005FF699 /* FileProtocol.swift */; };
-		F376B8DB22B13427005FF699 /* FileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D722B13427005FF699 /* FileProtocol.swift */; };
 		F376B8DD22B13C83005FF699 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DC22B13C83005FF699 /* Config.swift */; };
 		F376B8DF22B13C96005FF699 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DE22B13C96005FF699 /* Client.swift */; };
-		F376B8E022B145CD005FF699 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DE22B13C96005FF699 /* Client.swift */; };
-		F376B8E122B145CE005FF699 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DE22B13C96005FF699 /* Client.swift */; };
-		F376B8E222B145CF005FF699 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DE22B13C96005FF699 /* Client.swift */; };
-		F376B8E322B145D1005FF699 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DC22B13C83005FF699 /* Config.swift */; };
-		F376B8E422B145D2005FF699 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DC22B13C83005FF699 /* Config.swift */; };
-		F376B8E522B145D2005FF699 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DC22B13C83005FF699 /* Config.swift */; };
 		FE2165A8AEE2F5905E5FC5D9 /* Pods_Offenbach_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77415AFC514867ED2C1A6BFE /* Pods_Offenbach_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,20 +33,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3D9C428F22745894000A6585;
 			remoteInfo = "Offenbach-iOS";
-		};
-		3D9C43072274611B000A6585 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D9C428722745894000A6585 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D9C42A82274599D000A6585;
-			remoteInfo = "Offenbach-tvOS";
-		};
-		3D9C431722746198000A6585 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D9C428722745894000A6585 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D9C42C422745A07000A6585;
-			remoteInfo = "Offenbach-macOS";
 		};
 		3D9C433622746323000A6585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,9 +65,6 @@
 		3D9C429C227458E8000A6585 /* Offenbach.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Offenbach.plist; sourceTree = "<group>"; };
 		3D9C429D227458E8000A6585 /* OffenbachTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OffenbachTests.plist; sourceTree = "<group>"; };
 		3D9C42A122745900000A6585 /* TokenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProtocol.swift; sourceTree = "<group>"; };
-		3D9C42A92274599D000A6585 /* Offenbach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Offenbach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D9C42B7227459D6000A6585 /* Offenbach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Offenbach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D9C42C522745A07000A6585 /* Offenbach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Offenbach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C42D222745B48000A6585 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		3D9C42D322745B48000A6585 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		3D9C42D422745B48000A6585 /* Offenbach.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Offenbach.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -121,8 +77,6 @@
 		3D9C42DB22745DB0000A6585 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		3D9C42EC22745FDA000A6585 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		3D9C42F12274604A000A6585 /* Offenbach-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Offenbach-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D9C43012274611B000A6585 /* Offenbach-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Offenbach-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D9C431122746198000A6585 /* Offenbach-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Offenbach-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C43212274629B000A6585 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C43232274629B000A6585 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D9C43252274629B000A6585 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,54 +121,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C42A62274599D000A6585 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				97219AB2C59F33232929BBE7 /* Pods_Offenbach_tvOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42B4227459D6000A6585 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				306E16E739CD7A398B4B9407 /* Pods_Offenbach_watchOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42C222745A07000A6585 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C8D3D0CEE4E1114EB57D9AC /* Pods_Offenbach_macOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D9C42EE2274604A000A6585 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3D9C42F62274604A000A6585 /* Offenbach.framework in Frameworks */,
 				1946DA18716A9649148E3165 /* Pods_Offenbach_iOSTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42FE2274611B000A6585 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C43062274611B000A6585 /* Offenbach.framework in Frameworks */,
-				4614BA30EC59E53188634A87 /* Pods_Offenbach_tvOSTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C430E22746198000A6585 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C431622746198000A6585 /* Offenbach.framework in Frameworks */,
-				BCFDD7455228FB03E3B6522D /* Pods_Offenbach_macOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,12 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				3D9C429022745894000A6585 /* Offenbach.framework */,
-				3D9C42A92274599D000A6585 /* Offenbach.framework */,
-				3D9C42B7227459D6000A6585 /* Offenbach.framework */,
-				3D9C42C522745A07000A6585 /* Offenbach.framework */,
 				3D9C42F12274604A000A6585 /* Offenbach-iOSTests.xctest */,
-				3D9C43012274611B000A6585 /* Offenbach-tvOSTests.xctest */,
-				3D9C431122746198000A6585 /* Offenbach-macOSTests.xctest */,
 				3D9C43212274629B000A6585 /* Example.app */,
 			);
 			name = Products;
@@ -383,27 +290,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C42A42274599D000A6585 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42B2227459D6000A6585 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42C022745A07000A6585 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -427,66 +313,6 @@
 			productReference = 3D9C429022745894000A6585 /* Offenbach.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3D9C42A82274599D000A6585 /* Offenbach-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9C42AE2274599D000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-tvOS" */;
-			buildPhases = (
-				327721AF1C934A9E0DA33C2E /* [CP] Check Pods Manifest.lock */,
-				3D9C42A42274599D000A6585 /* Headers */,
-				3D9C42A52274599D000A6585 /* Sources */,
-				3D9C42A62274599D000A6585 /* Frameworks */,
-				3D9C42A72274599D000A6585 /* Resources */,
-				3D9C42CF22745AF5000A6585 /* Run SwiftLint */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Offenbach-tvOS";
-			productName = "Offenbach-tvOS";
-			productReference = 3D9C42A92274599D000A6585 /* Offenbach.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3D9C42B6227459D6000A6585 /* Offenbach-watchOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9C42BC227459D6000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-watchOS" */;
-			buildPhases = (
-				78AF06B918C4B1E8C86785DE /* [CP] Check Pods Manifest.lock */,
-				3D9C42B2227459D6000A6585 /* Headers */,
-				3D9C42B3227459D6000A6585 /* Sources */,
-				3D9C42B4227459D6000A6585 /* Frameworks */,
-				3D9C42B5227459D6000A6585 /* Resources */,
-				3D9C42D022745AFE000A6585 /* Run SwiftLint */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Offenbach-watchOS";
-			productName = "Offenbach-watchOS";
-			productReference = 3D9C42B7227459D6000A6585 /* Offenbach.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		3D9C42C422745A07000A6585 /* Offenbach-macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9C42CA22745A07000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-macOS" */;
-			buildPhases = (
-				5292679A0312614E9D2336D9 /* [CP] Check Pods Manifest.lock */,
-				3D9C42C022745A07000A6585 /* Headers */,
-				3D9C42C122745A07000A6585 /* Sources */,
-				3D9C42C222745A07000A6585 /* Frameworks */,
-				3D9C42C322745A07000A6585 /* Resources */,
-				3D9C42D122745B08000A6585 /* Run SwiftLint */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Offenbach-macOS";
-			productName = "Offenbach-macOS";
-			productReference = 3D9C42C522745A07000A6585 /* Offenbach.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		3D9C42F02274604A000A6585 /* Offenbach-iOSTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D9C42F92274604A000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-iOSTests" */;
@@ -504,44 +330,6 @@
 			name = "Offenbach-iOSTests";
 			productName = "Offenbach-iOSTests";
 			productReference = 3D9C42F12274604A000A6585 /* Offenbach-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3D9C43002274611B000A6585 /* Offenbach-tvOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9C43092274611B000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-tvOSTests" */;
-			buildPhases = (
-				C9E7CC38140DA2BE6D9C9CE6 /* [CP] Check Pods Manifest.lock */,
-				3D9C42FD2274611B000A6585 /* Sources */,
-				3D9C42FE2274611B000A6585 /* Frameworks */,
-				3D9C42FF2274611B000A6585 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D9C43082274611B000A6585 /* PBXTargetDependency */,
-			);
-			name = "Offenbach-tvOSTests";
-			productName = "Offenbach-tvOSTests";
-			productReference = 3D9C43012274611B000A6585 /* Offenbach-tvOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3D9C431022746198000A6585 /* Offenbach-macOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9C431922746198000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-macOSTests" */;
-			buildPhases = (
-				A097E0270E381372642F3CDE /* [CP] Check Pods Manifest.lock */,
-				3D9C430D22746198000A6585 /* Sources */,
-				3D9C430E22746198000A6585 /* Frameworks */,
-				3D9C430F22746198000A6585 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D9C431822746198000A6585 /* PBXTargetDependency */,
-			);
-			name = "Offenbach-macOSTests";
-			productName = "Offenbach-macOSTests";
-			productReference = 3D9C431122746198000A6585 /* Offenbach-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3D9C43202274629B000A6585 /* Example */ = {
@@ -579,22 +367,7 @@
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
 					};
-					3D9C42A82274599D000A6585 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					3D9C42B6227459D6000A6585 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					3D9C42C422745A07000A6585 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
 					3D9C42F02274604A000A6585 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					3D9C43002274611B000A6585 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
-					3D9C431022746198000A6585 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
 					3D9C43202274629B000A6585 = {
@@ -616,12 +389,7 @@
 			projectRoot = "";
 			targets = (
 				3D9C428F22745894000A6585 /* Offenbach-iOS */,
-				3D9C42A82274599D000A6585 /* Offenbach-tvOS */,
-				3D9C42B6227459D6000A6585 /* Offenbach-watchOS */,
-				3D9C42C422745A07000A6585 /* Offenbach-macOS */,
 				3D9C42F02274604A000A6585 /* Offenbach-iOSTests */,
-				3D9C43002274611B000A6585 /* Offenbach-tvOSTests */,
-				3D9C431022746198000A6585 /* Offenbach-macOSTests */,
 				3D9C43202274629B000A6585 /* Example */,
 			);
 		};
@@ -635,42 +403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C42A72274599D000A6585 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42B5227459D6000A6585 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42C322745A07000A6585 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D9C42EF2274604A000A6585 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42FF2274611B000A6585 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C430F22746198000A6585 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -689,83 +422,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		327721AF1C934A9E0DA33C2E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3D9C42CE22745AEA000A6585 /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		3D9C42CF22745AF5000A6585 /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		3D9C42D022745AFE000A6585 /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		3D9C42D122745B08000A6585 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -805,28 +462,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5292679A0312614E9D2336D9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		62F87407D22CF82C7E7FF52F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -843,50 +478,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Offenbach-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		78AF06B918C4B1E8C86785DE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-watchOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A097E0270E381372642F3CDE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-macOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -932,28 +523,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C9E7CC38140DA2BE6D9C9CE6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -970,66 +539,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C42A52274599D000A6585 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C42B1227459C1000A6585 /* TokenProtocol.swift in Sources */,
-				F376B8E022B145CD005FF699 /* Client.swift in Sources */,
-				F376B8E322B145D1005FF699 /* Config.swift in Sources */,
-				F376B8D322B13077005FF699 /* ClientError.swift in Sources */,
-				F376B8D922B13427005FF699 /* FileProtocol.swift in Sources */,
-				F376B8C822B12FA0005FF699 /* ConfigProtocol.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42B3227459D6000A6585 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C42BF227459F6000A6585 /* TokenProtocol.swift in Sources */,
-				F376B8E122B145CE005FF699 /* Client.swift in Sources */,
-				F376B8E422B145D2005FF699 /* Config.swift in Sources */,
-				F376B8D422B13077005FF699 /* ClientError.swift in Sources */,
-				F376B8DA22B13427005FF699 /* FileProtocol.swift in Sources */,
-				F376B8C922B12FA0005FF699 /* ConfigProtocol.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42C122745A07000A6585 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C42CD22745A28000A6585 /* TokenProtocol.swift in Sources */,
-				F376B8E222B145CF005FF699 /* Client.swift in Sources */,
-				F376B8E522B145D2005FF699 /* Config.swift in Sources */,
-				F376B8D522B13077005FF699 /* ClientError.swift in Sources */,
-				F376B8DB22B13427005FF699 /* FileProtocol.swift in Sources */,
-				F376B8CA22B12FA0005FF699 /* ConfigProtocol.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3D9C42ED2274604A000A6585 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3D9C42FC22746078000A6585 /* OffenbachTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C42FD2274611B000A6585 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C430C22746131000A6585 /* OffenbachTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D9C430D22746198000A6585 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D9C431C227461AF000A6585 /* OffenbachTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,16 +563,6 @@
 			isa = PBXTargetDependency;
 			target = 3D9C428F22745894000A6585 /* Offenbach-iOS */;
 			targetProxy = 3D9C42F72274604A000A6585 /* PBXContainerItemProxy */;
-		};
-		3D9C43082274611B000A6585 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D9C42A82274599D000A6585 /* Offenbach-tvOS */;
-			targetProxy = 3D9C43072274611B000A6585 /* PBXContainerItemProxy */;
-		};
-		3D9C431822746198000A6585 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D9C42C422745A07000A6585 /* Offenbach-macOS */;
-			targetProxy = 3D9C431722746198000A6585 /* PBXContainerItemProxy */;
 		};
 		3D9C433722746323000A6585 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1226,6 +730,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOS";
 				PRODUCT_NAME = Offenbach;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1257,200 +762,13 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOS";
 				PRODUCT_NAME = Offenbach;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		3D9C42AF2274599D000A6585 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAB19B0CC3CF7043BDB71F81 /* Pods-Offenbach-tvOS.debug.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Offenbach.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-tvOS";
-				PRODUCT_NAME = Offenbach;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		3D9C42B02274599D000A6585 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 667C7AB21DDFB8CE9D23F047 /* Pods-Offenbach-tvOS.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Offenbach.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-tvOS";
-				PRODUCT_NAME = Offenbach;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Release;
-		};
-		3D9C42BD227459D6000A6585 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AF246ECDB53F89AE376D7CE /* Pods-Offenbach-watchOS.debug.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Offenbach.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-watchOS";
-				PRODUCT_NAME = Offenbach;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 3.0;
-			};
-			name = Debug;
-		};
-		3D9C42BE227459D6000A6585 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83CE415E90BB265F859CE4A1 /* Pods-Offenbach-watchOS.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Configs/Offenbach.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-watchOS";
-				PRODUCT_NAME = Offenbach;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 3.0;
-			};
-			name = Release;
-		};
-		3D9C42CB22745A07000A6585 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92083BF8DFBA37DE834C81E8 /* Pods-Offenbach-macOS.debug.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Configs/Offenbach.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-macOS";
-				PRODUCT_NAME = Offenbach;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		3D9C42CC22745A07000A6585 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E69FF47DFC8440794397C5BA /* Pods-Offenbach-macOS.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Configs/Offenbach.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-macOS";
-				PRODUCT_NAME = Offenbach;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1466,6 +784,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1485,92 +804,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		3D9C430A2274611B000A6585 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA5B76ADFF7CC5F0C8946586 /* Pods-Offenbach-tvOSTests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Configs/OffenbachTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		3D9C430B2274611B000A6585 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46529779A457BD7DEEA58D10 /* Pods-Offenbach-tvOSTests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Configs/OffenbachTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Release;
-		};
-		3D9C431A22746198000A6585 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7090D53CDD03E92F21742583 /* Pods-Offenbach-macOSTests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Configs/OffenbachTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-macOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		3D9C431B22746198000A6585 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C0AD274947518E7038271B5 /* Pods-Offenbach-macOSTests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Configs/OffenbachTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-macOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1639,56 +877,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D9C42AE2274599D000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D9C42AF2274599D000A6585 /* Debug */,
-				3D9C42B02274599D000A6585 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D9C42BC227459D6000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-watchOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D9C42BD227459D6000A6585 /* Debug */,
-				3D9C42BE227459D6000A6585 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D9C42CA22745A07000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D9C42CB22745A07000A6585 /* Debug */,
-				3D9C42CC22745A07000A6585 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3D9C42F92274604A000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D9C42FA2274604A000A6585 /* Debug */,
 				3D9C42FB2274604A000A6585 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D9C43092274611B000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-tvOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D9C430A2274611B000A6585 /* Debug */,
-				3D9C430B2274611B000A6585 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D9C431922746198000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-macOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D9C431A22746198000A6585 /* Debug */,
-				3D9C431B22746198000A6585 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
