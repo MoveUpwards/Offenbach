@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source                    = { :git => "https://gitlab.com/moveupwards/offenbach.git", :tag => s.version }
   s.swift_version             = '5.0'
   s.ios.deployment_target     = "10.0"
-  s.osx.deployment_target     = "10.12"
+  s.osx.deployment_target     = "10.13"
   s.source_files              = "Sources/**/*"
   s.frameworks                = "Foundation"
 
