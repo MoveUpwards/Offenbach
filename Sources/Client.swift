@@ -14,6 +14,10 @@ public typealias Headers = [String: String]?
 open class Client {
     // MARK: Public functions
 
+    public var baseUrl: String {
+        return config.baseURL
+    }
+
     @discardableResult
     public func set(config: ConfigProtocol) -> Client {
         self.config = config
