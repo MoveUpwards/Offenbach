@@ -19,14 +19,14 @@ open class Client {
     }
 
     @discardableResult
-    public func set(config: ConfigProtocol) -> Client {
+    public func set(config: ConfigProtocol) -> Self {
         self.config = config
 
         return self
     }
 
     @discardableResult
-    public func set(jwt: TokenProtocol?) -> Client {
+    public func set(jwt: TokenProtocol?) -> Self {
         guard let token = jwt?.token else {
             return self
         }
@@ -41,7 +41,7 @@ open class Client {
     }
 
     @discardableResult
-    public func set(apiKey: TokenProtocol?) -> Client {
+    public func set(apiKey: TokenProtocol?) -> Self {
         guard let token = apiKey?.token else {
             return self
         }
