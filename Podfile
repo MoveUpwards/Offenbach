@@ -14,7 +14,7 @@ target 'Offenbach-iOS' do
   use_frameworks!
 
   # Pods for Offenbach-iOS
-  pod 'Alamofire', '~> 5.0.0-beta.6'
+  pod 'Alamofire', '5.0.0-beta.7'
   
   target 'Offenbach-iOSTests' do
     inherit! :search_paths

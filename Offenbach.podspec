@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                      = "Offenbach"
-  s.version                   = "1.0.0"
+  s.version                   = "1.0.6"
   s.summary                   = "Offenbach"
   s.homepage                  = "https://gitlab.com/moveupwards/offenbach"
   s.license                   = { :type => "MIT", :file => "LICENSE" }
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files              = "Sources/**/*"
   s.frameworks                = "Foundation"
 
-  s.dependency 'Alamofire', '~> 5.0.0-beta.6'
+  s.dependency 'Alamofire', '~> 5.0.0-beta.7'
 end
