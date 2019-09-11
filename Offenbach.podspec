@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files              = "Sources/**/*"
   s.frameworks                = "Foundation"
 
-  s.dependency 'Alamofire', '~> 5.0.0-beta.7'
+  s.dependency 'Alamofire', '5.0.0-beta.7'
 end
