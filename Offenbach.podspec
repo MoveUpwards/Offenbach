@@ -2,10 +2,10 @@ Pod::Spec.new do |s|
   s.name                      = "Offenbach"
   s.version                   = "1.0.6"
   s.summary                   = "Offenbach"
-  s.homepage                  = "https://gitlab.com/moveupwards/offenbach"
+  s.homepage                  = "https://github.com/MoveUpwards/Offenbach"
   s.license                   = { :type => "MIT", :file => "LICENSE" }
   s.author                    = { "Move Upwards" => "contact@moveupwards.com" }
-  s.source                    = { :git => "https://gitlab.com/moveupwards/offenbach.git", :tag => s.version }
+  s.source                    = { :git => "https://github.com/MoveUpwards/Offenbach.git", :tag => s.version }
   s.swift_version             = '5.0'
   s.ios.deployment_target     = "10.0"
   s.osx.deployment_target     = "10.13"
