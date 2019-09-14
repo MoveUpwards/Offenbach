@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol TokenProtocol {
+public protocol TokenProtocol: Decodable {
     /// The authentication jwt token
     var token: String? { get set }
 }
