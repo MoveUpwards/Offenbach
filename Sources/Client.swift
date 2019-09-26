@@ -116,18 +116,17 @@ open class Client {
     @discardableResult
     public func upload<T: Decodable>(action: String,
                                      parameters: Parameters = [:],
-                                     file: FileProtocol,
+                                     files: [FileProtocol],
                                      progress: @escaping (_ progress: Double) -> Void,
                                      completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
         return backgroundManager
             .upload(multipartFormData: { [weak self] multiPart in
-                guard let url = file.url else {
-                    return
+                files.forEach { file in
+                    guard let url = file.url else { return }
+                    multiPart.append(url, withName: "file", fileName: file.filename, mimeType: file.mimetype)
                 }
-
-                multiPart.append(url, withName: "file", fileName: file.filename, mimeType: file.mimetype)
                 self?.generateMultipart(multiPart, with: parameters)
-                }, to: "\(config.baseURL)/\(action)")
+            }, to: "\(config.baseURL)/\(action)")
             .validate()
             .uploadProgress { value in
                 progress(value.fractionCompleted)
