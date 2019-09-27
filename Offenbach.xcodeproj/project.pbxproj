@@ -24,6 +24,7 @@
 		F376B8D822B13427005FF699 /* FileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D722B13427005FF699 /* FileProtocol.swift */; };
 		F376B8DD22B13C83005FF699 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DC22B13C83005FF699 /* Config.swift */; };
 		F376B8DF22B13C96005FF699 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8DE22B13C96005FF699 /* Client.swift */; };
+		F3E1AFD8233E5B9C00002D6F /* MultiPartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E1AFD7233E5B9C00002D6F /* MultiPartProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		F376B8D722B13427005FF699 /* FileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProtocol.swift; sourceTree = "<group>"; };
 		F376B8DC22B13C83005FF699 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		F376B8DE22B13C96005FF699 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		F3E1AFD7233E5B9C00002D6F /* MultiPartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				3D9C42A122745900000A6585 /* TokenProtocol.swift */,
 				F376B8D722B13427005FF699 /* FileProtocol.swift */,
 				F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */,
+				F3E1AFD7233E5B9C00002D6F /* MultiPartProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E1AFD8233E5B9C00002D6F /* MultiPartProtocol.swift in Sources */,
 				3D9C42A222745900000A6585 /* TokenProtocol.swift in Sources */,
 				F376B8DF22B13C96005FF699 /* Client.swift in Sources */,
 				F376B8D222B13077005FF699 /* ClientError.swift in Sources */,
@@ -701,7 +705,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOS";
 				PRODUCT_NAME = Offenbach;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -734,7 +738,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOS";
 				PRODUCT_NAME = Offenbach;
 				PROVISIONING_PROFILE_SPECIFIER = "";
