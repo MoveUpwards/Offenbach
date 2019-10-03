@@ -114,6 +114,16 @@ open class Client {
     }
 
     @discardableResult
+    public func download(url: URL, completion: @escaping (Data?) -> Void) -> DownloadRequest {
+        return manager.download(url).responseData { response in
+            if case .failure(let error) = response.result {
+                print("[DOWNLOAD]", error)
+            }
+            completion(response.value)
+        }
+    }
+
+    @discardableResult
     public func upload<T: Decodable>(action: String,
                                      parameters: Parameters = [:],
                                      files: [MultiPartProtocol],
