@@ -1,9 +1,12 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 
 import PackageDescription
 
 let package = Package(
     name: "Offenbach",
+    platforms: [
+        .iOS(.v10),
+    ],
     products: [
         .library(
             name: "Offenbach",
@@ -11,12 +14,12 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-beta.7")
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .exact("5.0.0-beta.7"))
     ],
     targets: [
         .target(
             name: "Offenbach",
-            dependencies: [],
+            dependencies: ["Alamofire"],
             path: "Sources"
         ),
         .testTarget(
