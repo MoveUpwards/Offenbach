@@ -114,6 +114,21 @@ open class Client {
     }
 
     @discardableResult
+    public func put<T: Decodable>(action: String,
+                                  parameters: Parameters = [:],
+                                  encoder: ParameterEncoding = JSONEncoding.default,
+                                  completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+        return manager.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
+            .validate()
+            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
+                if case .failure(let error) = response.result {
+                    print("[MAPPING]", error)
+                }
+                completion(response.result)
+        }
+    }
+
+    @discardableResult
     public func download(url: URL, completion: @escaping (Data?) -> Void) -> DownloadRequest {
         return manager.download(url).responseData { response in
             if case .failure(let error) = response.result {
