@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                      = "Offenbach"
-  s.version                   = "1.1.0"
+  s.version                   = "1.3.0"
   s.summary                   = "Offenbach"
   s.homepage                  = "https://github.com/MoveUpwards/Offenbach"
   s.license                   = { :type => "MIT", :file => "LICENSE" }
