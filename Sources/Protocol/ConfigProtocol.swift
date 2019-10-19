@@ -9,10 +9,8 @@
 import Foundation
 
 public protocol ConfigProtocol {
-    static var headers: [String: String]? { get }
-
+    var headers: [String: String]? { get }
     var baseURL: String { get }
-
     var env: ApiEnvironment { get }
     var decoder: JSONDecoder { get }
 

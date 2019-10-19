@@ -31,7 +31,7 @@ open class Client {
             return self
         }
 
-        var headers = Config.headers
+        var headers = config.headers
         headers?["Authorization"] = "Bearer \(token)"
 
         configureManager(with: headers)
@@ -46,7 +46,7 @@ open class Client {
             return self
         }
 
-        var headers = Config.headers
+        var headers = config.headers
         headers?["apikey"] = token
 
         configureManager(with: headers)
@@ -196,8 +196,8 @@ open class Client {
     // MARK: Private functions
 
     required public init() {
-        configureManager(with: Config.headers)
-        backgroundConfigureManager(with: Config.headers)
+        configureManager(with: config.headers)
+        backgroundConfigureManager(with: config.headers)
     }
 
     @discardableResult

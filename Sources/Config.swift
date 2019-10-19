@@ -9,14 +9,14 @@
 import Foundation
 
 open class Config: ConfigProtocol {
-    public static var headers: [String: String]? {
+    open var headers: [String: String]? {
         return [
             "Accept": "application/json",
             "Content-Type": "application/json"
         ]
     }
     
-    public var baseURL: String {
+    open var baseURL: String {
         return "http://localhost:8080"
     }
 
