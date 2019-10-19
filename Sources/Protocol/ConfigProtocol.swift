@@ -12,7 +12,9 @@ public protocol ConfigProtocol {
     static var headers: [String: String]? { get }
 
     var baseURL: String { get }
-    var decoder: JSONDecoder { get }
 
-    init(baseURL: String, decoder: JSONDecoder)
+    var env: ApiEnvironment { get set }
+    var decoder: JSONDecoder { get set }
+
+    init(env: ApiEnvironment, decoder: JSONDecoder)
 }
