@@ -16,11 +16,15 @@ open class Config: ConfigProtocol {
         ]
     }
     
-    public let baseURL: String
+    public var baseURL: String {
+        return "http://localhost:8080"
+    }
+
+    public let env: ApiEnvironment
     public let decoder: JSONDecoder
 
-    required public init(baseURL: String, decoder: JSONDecoder = JSONDecoder()) {
-        self.baseURL = baseURL
+    public required init(env: ApiEnvironment, decoder: JSONDecoder = JSONDecoder()) {
+        self.env = env
         self.decoder = decoder
     }
 }

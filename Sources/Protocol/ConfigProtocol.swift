@@ -13,8 +13,8 @@ public protocol ConfigProtocol {
 
     var baseURL: String { get }
 
-    var env: ApiEnvironment { get set }
-    var decoder: JSONDecoder { get set }
+    var env: ApiEnvironment { get }
+    var decoder: JSONDecoder { get }
 
     init(env: ApiEnvironment, decoder: JSONDecoder)
 }

@@ -191,7 +191,7 @@ open class Client {
     private(set) var manager = Alamofire.Session.default
     private(set) var backgroundManager = Alamofire.Session.default
 
-    private var config: ConfigProtocol = Config(baseURL: "http://localhost:8080")
+    private var config: ConfigProtocol = Config(env: .develop)
 
     // MARK: Private functions
 
