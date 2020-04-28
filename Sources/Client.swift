@@ -59,24 +59,25 @@ open class Client {
     public func post<T: Decodable>(action: String,
                                    parameters: Parameters = [:],
                                    encoder: ParameterEncoding = JSONEncoding.default,
-                                   completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         return manager.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
+            .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
                     print("[MAPPING]", error)
                 }
                 completion(response.result)
         }
+
     }
 
     @discardableResult
     public func get<T: Decodable>(action: String,
                                   parameters: Parameters = [:],
-                                  completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
+            .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
                     print("[MAPPING]", error)
                 }
@@ -87,10 +88,10 @@ open class Client {
     @discardableResult
     public func list<T: Decodable>(action: String,
                                    parameters: Parameters = [:],
-                                   completion: @escaping (Result<[T], Error>) -> Void) -> DataRequest {
+                                   completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest {
         return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<[T]>) in
+            .responseDecodable(of: [T].self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
                     print("[MAPPING]", error)
                 }
@@ -102,10 +103,10 @@ open class Client {
     public func patch<T: Decodable>(action: String,
                                     parameters: Parameters = [:],
                                     encoder: ParameterEncoding = JSONEncoding.default,
-                                    completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         return manager.request("\(config.baseURL)/\(action)", method: .patch, parameters: parameters, encoding: encoder)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
+            .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
                     print("[MAPPING]", error)
                 }
@@ -117,10 +118,10 @@ open class Client {
     public func put<T: Decodable>(action: String,
                                   parameters: Parameters = [:],
                                   encoder: ParameterEncoding = JSONEncoding.default,
-                                  completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         return manager.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
+            .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
                     print("[MAPPING]", error)
                 }
@@ -132,13 +133,13 @@ open class Client {
     public func delete<T: Decodable>(action: String,
                                      parameters: Parameters = [:],
                                      encoder: ParameterEncoding = JSONEncoding.default,
-                                     completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         return manager.request("\(config.baseURL)/\(action)",
             method: .delete,
             parameters: parameters,
             encoding: encoder)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
+            .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
                     print("[MAPPING]", error)
                 }
@@ -161,41 +162,44 @@ open class Client {
                                      parameters: Parameters = [:],
                                      files: [MultiPartProtocol],
                                      progress: @escaping (_ progress: Double) -> Void,
-                                     completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
+                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         return backgroundManager
             .upload(multipartFormData: { [weak self] multiPart in
                 files.forEach { file in
                     guard let url = file.content.url else { return }
-                    
+
                     multiPart.append(url,
                                      withName: file.name,
                                      fileName: file.content.filename,
                                      mimeType: file.content.mimetype)
                 }
                 self?.generateMultipart(multiPart, with: parameters)
-            }, to: "\(config.baseURL)/\(action)")
+                }, to: "\(config.baseURL)/\(action)")
             .validate()
             .uploadProgress { value in
                 progress(value.fractionCompleted)
+        }
+        .responseDecodable(of: T.self, decoder: config.decoder) { response in
+            if case .failure(let error) = response.result {
+                print("[MAPPING]", error)
             }
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
+            completion(response.result)
         }
     }
 
     // MARK: - Private properties
 
-    private(set) var manager = Alamofire.Session.default
-    private(set) var backgroundManager = Alamofire.Session.default
+    private(set) var manager: Session
+    private(set) var backgroundManager: Session
 
     private var config: ConfigProtocol = Config(env: .develop)
 
     // MARK: Private functions
 
-    required public init() {
+    required public init(manager: Session = .default, backgroundManager: Session = .default) {
+        self.manager = manager
+        self.backgroundManager = backgroundManager
+
         configureManager(with: config.headers)
         backgroundConfigureManager(with: config.headers)
     }
@@ -231,9 +235,9 @@ open class Client {
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.urlCache?.removeAllCachedResponses()
 
-        manager = Alamofire.Session(configuration: configuration,
-                                    delegate: Alamofire.SessionDelegate(),
-                                    redirectHandler: redirectionHandler(with: headers))
+        manager = Session(configuration: configuration,
+                          delegate: Alamofire.SessionDelegate(),
+                          redirectHandler: redirectionHandler(with: headers))
     }
 
     private func backgroundConfigureManager(with headers: [String: String]?) {
@@ -247,9 +251,9 @@ open class Client {
             backgroundConfiguration.waitsForConnectivity = true
         }
 
-        backgroundManager = Alamofire.Session(configuration: backgroundConfiguration,
-                                              delegate: Alamofire.SessionDelegate(),
-                                              redirectHandler: redirectionHandler(with: headers))
+        backgroundManager = Session(configuration: backgroundConfiguration,
+                                    delegate: Alamofire.SessionDelegate(),
+                                    redirectHandler: redirectionHandler(with: headers))
     }
 
     private func redirectionHandler(with headers: Headers) -> Redirector {

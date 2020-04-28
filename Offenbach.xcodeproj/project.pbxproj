@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,9 +16,8 @@
 		3D9C432E2274629C000A6585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C432C2274629C000A6585 /* LaunchScreen.storyboard */; };
 		3D9C433422746323000A6585 /* Offenbach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* Offenbach.framework */; };
 		3D9C433522746323000A6585 /* Offenbach.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* Offenbach.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61ADDBB56CA18FAF5F21FE63 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48294A2D756E8F82C73D02BA /* Pods_Example.framework */; };
-		6E4DFAF5E1B699C173F0F142 /* Pods_Offenbach_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512187E7D8003A35386DE312 /* Pods_Offenbach_iOSTests.framework */; };
-		8304A8825A420031331F2703 /* Pods_Offenbach_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45547C377C4D604EEFCBC6A /* Pods_Offenbach_iOS.framework */; };
+		F320806A2458D648001130CB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F32080692458D648001130CB /* Alamofire */; };
+		F320806C2458D6AC001130CB /* ApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F320806B2458D6AC001130CB /* ApiEnvironment.swift */; };
 		F376B8C722B12FA0005FF699 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */; };
 		F376B8D222B13077005FF699 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D122B13077005FF699 /* ClientError.swift */; };
 		F376B8D822B13427005FF699 /* FileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376B8D722B13427005FF699 /* FileProtocol.swift */; };
@@ -59,8 +58,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		266B7DC8C37A1929FFE5D04A /* Pods-Offenbach-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-iOS.release.xcconfig"; path = "Target Support Files/Pods-Offenbach-iOS/Pods-Offenbach-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		294BCC2DA69B890ADF9576EF /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		3D9C429022745894000A6585 /* Offenbach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Offenbach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C429C227458E8000A6585 /* Offenbach.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Offenbach.plist; sourceTree = "<group>"; };
 		3D9C429D227458E8000A6585 /* OffenbachTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OffenbachTests.plist; sourceTree = "<group>"; };
@@ -84,13 +81,7 @@
 		3D9C432D2274629C000A6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D9C432F2274629C000A6585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB91AC4229AC263002668DA /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
-		41776E4329D1AB1C74102ABF /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		454C1A1CB116CCF43E90A2FF /* Pods-Offenbach-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Offenbach-iOSTests/Pods-Offenbach-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		48294A2D756E8F82C73D02BA /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4889099E0B302E5EB20ECDD1 /* Pods-Offenbach-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Offenbach-iOS/Pods-Offenbach-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		512187E7D8003A35386DE312 /* Pods_Offenbach_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Offenbach_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		967BC6AA32AC947106780414 /* Pods-Offenbach-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Offenbach-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Offenbach-iOSTests/Pods-Offenbach-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		B45547C377C4D604EEFCBC6A /* Pods_Offenbach_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Offenbach_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F320806B2458D6AC001130CB /* ApiEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEnvironment.swift; sourceTree = "<group>"; };
 		F376B8C622B12FA0005FF699 /* ConfigProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigProtocol.swift; sourceTree = "<group>"; };
 		F376B8D122B13077005FF699 /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
 		F376B8D722B13427005FF699 /* FileProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProtocol.swift; sourceTree = "<group>"; };
@@ -104,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8304A8825A420031331F2703 /* Pods_Offenbach_iOS.framework in Frameworks */,
+				F320806A2458D648001130CB /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +104,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9C42F62274604A000A6585 /* Offenbach.framework in Frameworks */,
-				6E4DFAF5E1B699C173F0F142 /* Pods_Offenbach_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +112,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D9C433422746323000A6585 /* Offenbach.framework in Frameworks */,
-				61ADDBB56CA18FAF5F21FE63 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +126,6 @@
 				3D9C43222274629B000A6585 /* Example */,
 				3D9C429B227458E8000A6585 /* Configs */,
 				3D9C429122745894000A6585 /* Products */,
-				4299E10D565D6A8B4E03ECBE /* Pods */,
-				973BF91509A72D0BBC709A5D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,29 +198,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		4299E10D565D6A8B4E03ECBE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				294BCC2DA69B890ADF9576EF /* Pods-Example.debug.xcconfig */,
-				41776E4329D1AB1C74102ABF /* Pods-Example.release.xcconfig */,
-				4889099E0B302E5EB20ECDD1 /* Pods-Offenbach-iOS.debug.xcconfig */,
-				266B7DC8C37A1929FFE5D04A /* Pods-Offenbach-iOS.release.xcconfig */,
-				454C1A1CB116CCF43E90A2FF /* Pods-Offenbach-iOSTests.debug.xcconfig */,
-				967BC6AA32AC947106780414 /* Pods-Offenbach-iOSTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		973BF91509A72D0BBC709A5D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				48294A2D756E8F82C73D02BA /* Pods_Example.framework */,
-				B45547C377C4D604EEFCBC6A /* Pods_Offenbach_iOS.framework */,
-				512187E7D8003A35386DE312 /* Pods_Offenbach_iOSTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F376B8CB22B12FA7005FF699 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +212,7 @@
 		F376B8D622B13084005FF699 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				F320806B2458D6AC001130CB /* ApiEnvironment.swift */,
 				F376B8D122B13077005FF699 /* ClientError.swift */,
 			);
 			path = Enum;
@@ -270,7 +235,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D9C429822745894000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-iOS" */;
 			buildPhases = (
-				3654BABC44B4A8F2FF702794 /* [CP] Check Pods Manifest.lock */,
 				3D9C428B22745894000A6585 /* Headers */,
 				3D9C428C22745894000A6585 /* Sources */,
 				3D9C428D22745894000A6585 /* Frameworks */,
@@ -282,6 +246,9 @@
 			dependencies = (
 			);
 			name = "Offenbach-iOS";
+			packageProductDependencies = (
+				F32080692458D648001130CB /* Alamofire */,
+			);
 			productName = Offenbach;
 			productReference = 3D9C429022745894000A6585 /* Offenbach.framework */;
 			productType = "com.apple.product-type.framework";
@@ -290,7 +257,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D9C42F92274604A000A6585 /* Build configuration list for PBXNativeTarget "Offenbach-iOSTests" */;
 			buildPhases = (
-				344A5404D1C260065665D6AA /* [CP] Check Pods Manifest.lock */,
 				3D9C42ED2274604A000A6585 /* Sources */,
 				3D9C42EE2274604A000A6585 /* Frameworks */,
 				3D9C42EF2274604A000A6585 /* Resources */,
@@ -309,12 +275,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D9C43302274629C000A6585 /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
-				D1E6ADA5BA927C0E64863982 /* [CP] Check Pods Manifest.lock */,
 				3D9C431D2274629B000A6585 /* Sources */,
 				3D9C431E2274629B000A6585 /* Frameworks */,
 				3D9C431F2274629B000A6585 /* Resources */,
 				3D9C433822746323000A6585 /* Embed Frameworks */,
-				95B4F104C4C3E10FC4DB0214 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,6 +321,9 @@
 				Base,
 			);
 			mainGroup = 3D9C428622745894000A6585;
+			packageReferences = (
+				F32080682458D648001130CB /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 3D9C429122745894000A6585 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -395,50 +362,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		344A5404D1C260065665D6AA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-iOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3654BABC44B4A8F2FF702794 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Offenbach-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3D9C42CE22745AEA000A6585 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,45 +380,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		95B4F104C4C3E10FC4DB0214 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1E6ADA5BA927C0E64863982 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -509,6 +393,7 @@
 				F376B8D222B13077005FF699 /* ClientError.swift in Sources */,
 				F376B8D822B13427005FF699 /* FileProtocol.swift in Sources */,
 				F376B8C722B12FA0005FF699 /* ConfigProtocol.swift in Sources */,
+				F320806C2458D6AC001130CB /* ApiEnvironment.swift in Sources */,
 				F376B8DD22B13C83005FF699 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,7 +570,6 @@
 		};
 		3D9C429922745894000A6585 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4889099E0B302E5EB20ECDD1 /* Pods-Offenbach-iOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -718,7 +602,6 @@
 		};
 		3D9C429A22745894000A6585 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 266B7DC8C37A1929FFE5D04A /* Pods-Offenbach-iOS.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -750,7 +633,6 @@
 		};
 		3D9C42FA2274604A000A6585 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 454C1A1CB116CCF43E90A2FF /* Pods-Offenbach-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Configs/OffenbachTests.plist;
@@ -770,7 +652,6 @@
 		};
 		3D9C42FB2274604A000A6585 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 967BC6AA32AC947106780414 /* Pods-Offenbach-iOSTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Configs/OffenbachTests.plist;
@@ -790,7 +671,6 @@
 		};
 		3D9C43312274629C000A6585 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 294BCC2DA69B890ADF9576EF /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -812,7 +692,6 @@
 		};
 		3D9C43322274629C000A6585 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41776E4329D1AB1C74102ABF /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -872,6 +751,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F32080682458D648001130CB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F32080692458D648001130CB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F32080682458D648001130CB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3D9C428722745894000A6585 /* Project object */;
 }
