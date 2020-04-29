@@ -6,13 +6,14 @@
 //  Copyright © 2019 Move Upwards. All rights reserved.
 //
 
+import Alamofire
 import Foundation
 
 public protocol ConfigProtocol {
-    var headers: [String: String]? { get }
+    var headers: [HTTPHeader]? { get }
     var baseURL: String { get }
     var env: ApiEnvironment { get }
     var decoder: JSONDecoder { get }
 
-    init(env: ApiEnvironment, decoder: JSONDecoder)
+    init(env: ApiEnvironment)
 }

@@ -9,10 +9,17 @@
 import Alamofire
 import Foundation
 
-public typealias Headers = [String: String]?
+open class Client: RequestAdapter {
 
-open class Client {
+    // MARK: - Private properties
+
+    private var config: ConfigProtocol = Config(env: .develop)
+    private var token: String?
+    private var apiKey: String?
+
     // MARK: Public functions
+
+    private init() { }
 
     public var baseUrl: String {
         return config.baseURL
@@ -27,40 +34,52 @@ open class Client {
 
     @discardableResult
     public func set(jwt: TokenProtocol?) -> Self {
-        guard let token = jwt?.token else {
-            return self
-        }
-
-        var headers = config.headers
-        headers?["Authorization"] = "Bearer \(token)"
-
-        configureManager(with: headers)
-        backgroundConfigureManager(with: headers)
+        self.token = jwt?.token
 
         return self
     }
 
     @discardableResult
     public func set(apiKey: TokenProtocol?) -> Self {
-        guard let token = apiKey?.token else {
-            return self
-        }
-
-        var headers = config.headers
-        headers?["apikey"] = token
-
-        configureManager(with: headers)
-        backgroundConfigureManager(with: headers)
+        self.apiKey = apiKey?.token
 
         return self
     }
 
+    open var manager: Session {
+        Session(redirectHandler: redirectionHandler(), cachedResponseHandler: ResponseCacher(behavior: .cache))
+    }
+
+    open func redirectionHandler() -> Redirector {
+        return Redirector(behavior: .follow)
+    }
+
+    open func adapt(_ urlRequest: URLRequest,
+                    for session: Session,
+                    completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        var urlRequest = urlRequest
+
+        if let token = token {
+            urlRequest.headers.add(.authorization(bearerToken: token))
+        }
+
+        if let key = apiKey {
+            urlRequest.headers.add(HTTPHeader(name: "apikey", value: key))
+        }
+
+        config.headers?.forEach { urlRequest.headers.add($0) }
+
+        completion(.success(urlRequest))
+    }
+}
+
+extension Client {
     @discardableResult
     public func post<T: Decodable>(action: String,
                                    parameters: Parameters = [:],
                                    encoder: ParameterEncoding = JSONEncoding.default,
                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
+        return AF.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -75,7 +94,7 @@ open class Client {
     public func get<T: Decodable>(action: String,
                                   parameters: Parameters = [:],
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
+        return AF.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -89,7 +108,7 @@ open class Client {
     public func list<T: Decodable>(action: String,
                                    parameters: Parameters = [:],
                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
+        return AF.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
             .validate()
             .responseDecodable(of: [T].self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -104,7 +123,7 @@ open class Client {
                                     parameters: Parameters = [:],
                                     encoder: ParameterEncoding = JSONEncoding.default,
                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .patch, parameters: parameters, encoding: encoder)
+        return AF.request("\(config.baseURL)/\(action)", method: .patch, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -119,7 +138,7 @@ open class Client {
                                   parameters: Parameters = [:],
                                   encoder: ParameterEncoding = JSONEncoding.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
+        return AF.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -134,10 +153,7 @@ open class Client {
                                      parameters: Parameters = [:],
                                      encoder: ParameterEncoding = JSONEncoding.default,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)",
-            method: .delete,
-            parameters: parameters,
-            encoding: encoder)
+        return AF.request("\(config.baseURL)/\(action)", method: .delete, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -149,7 +165,7 @@ open class Client {
 
     @discardableResult
     public func download(url: URL, completion: @escaping (Data?) -> Void) -> DownloadRequest {
-        return manager.download(url).responseData { response in
+        return AF.download(url).responseData { response in
             if case .failure(let error) = response.result {
                 print("[DOWNLOAD]", error)
             }
@@ -163,18 +179,17 @@ open class Client {
                                      files: [MultiPartProtocol],
                                      progress: @escaping (_ progress: Double) -> Void,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return backgroundManager
-            .upload(multipartFormData: { [weak self] multiPart in
-                files.forEach { file in
-                    guard let url = file.content.url else { return }
+        return AF.upload(multipartFormData: { [weak self] multiPart in
+            files.forEach { file in
+                guard let url = file.content.url else { return }
 
-                    multiPart.append(url,
-                                     withName: file.name,
-                                     fileName: file.content.filename,
-                                     mimeType: file.content.mimetype)
+                multiPart.append(url,
+                                 withName: file.name,
+                                 fileName: file.content.filename,
+                                 mimeType: file.content.mimetype)
                 }
                 self?.generateMultipart(multiPart, with: parameters)
-                }, to: "\(config.baseURL)/\(action)")
+            }, to: "\(config.baseURL)/\(action)")
             .validate()
             .uploadProgress { value in
                 progress(value.fractionCompleted)
@@ -185,23 +200,6 @@ open class Client {
             }
             completion(response.result)
         }
-    }
-
-    // MARK: - Private properties
-
-    private(set) var manager: Session
-    private(set) var backgroundManager: Session
-
-    private var config: ConfigProtocol = Config(env: .develop)
-
-    // MARK: Private functions
-
-    required public init(manager: Session = .default, backgroundManager: Session = .default) {
-        self.manager = manager
-        self.backgroundManager = backgroundManager
-
-        configureManager(with: config.headers)
-        backgroundConfigureManager(with: config.headers)
     }
 
     @discardableResult
@@ -227,43 +225,5 @@ open class Client {
         }
 
         return multiPart
-    }
-
-    private func configureManager(with headers: [String: String]?) {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = headers
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        configuration.urlCache?.removeAllCachedResponses()
-
-        manager = Session(configuration: configuration,
-                          delegate: Alamofire.SessionDelegate(),
-                          redirectHandler: redirectionHandler(with: headers))
-    }
-
-    private func backgroundConfigureManager(with headers: [String: String]?) {
-        let identifier = "com.offenbach.background.transfert.\(UUID().uuidString)"
-        let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)
-        backgroundConfiguration.httpAdditionalHeaders = headers
-        backgroundConfiguration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        backgroundConfiguration.urlCache?.removeAllCachedResponses()
-
-        if #available(iOS 11.0, *) {
-            backgroundConfiguration.waitsForConnectivity = true
-        }
-
-        backgroundManager = Session(configuration: backgroundConfiguration,
-                                    delegate: Alamofire.SessionDelegate(),
-                                    redirectHandler: redirectionHandler(with: headers))
-    }
-
-    private func redirectionHandler(with headers: Headers) -> Redirector {
-        let redirect = Redirector(behavior: .modify({ _, request, _ -> URLRequest? in
-            var finalRequest = request
-            finalRequest.allHTTPHeaderFields = headers
-
-            return finalRequest
-        }))
-
-        return redirect
     }
 }
