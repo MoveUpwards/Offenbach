@@ -9,7 +9,7 @@
 import Alamofire
 import Foundation
 
-open class Client: RequestAdapter {
+open class Client: RequestInterceptor {
 
     // MARK: - Private properties
 
@@ -19,7 +19,7 @@ open class Client: RequestAdapter {
 
     // MARK: Public functions
 
-    private init() { }
+    public init() { }
 
     public var baseUrl: String {
         return config.baseURL
@@ -46,9 +46,11 @@ open class Client: RequestAdapter {
         return self
     }
 
-    open var manager: Session {
-        Session(redirectHandler: redirectionHandler(), cachedResponseHandler: ResponseCacher(behavior: .cache))
-    }
+    open lazy var manager: Session = {
+        Session(interceptor: self,
+                redirectHandler: redirectionHandler(),
+                cachedResponseHandler: ResponseCacher(behavior: .cache))
+    }()
 
     open func redirectionHandler() -> Redirector {
         return Redirector(behavior: .follow)
@@ -79,7 +81,7 @@ extension Client {
                                    parameters: Parameters = [:],
                                    encoder: ParameterEncoding = JSONEncoding.default,
                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return AF.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
+        return manager.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -108,7 +110,7 @@ extension Client {
     public func list<T: Decodable>(action: String,
                                    parameters: Parameters = [:],
                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest {
-        return AF.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
+        return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
             .validate()
             .responseDecodable(of: [T].self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -123,7 +125,7 @@ extension Client {
                                     parameters: Parameters = [:],
                                     encoder: ParameterEncoding = JSONEncoding.default,
                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return AF.request("\(config.baseURL)/\(action)", method: .patch, parameters: parameters, encoding: encoder)
+        return manager.request("\(config.baseURL)/\(action)", method: .patch, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -138,7 +140,7 @@ extension Client {
                                   parameters: Parameters = [:],
                                   encoder: ParameterEncoding = JSONEncoding.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return AF.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
+        return manager.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -153,7 +155,10 @@ extension Client {
                                      parameters: Parameters = [:],
                                      encoder: ParameterEncoding = JSONEncoding.default,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return AF.request("\(config.baseURL)/\(action)", method: .delete, parameters: parameters, encoding: encoder)
+        return manager.request("\(config.baseURL)/\(action)",
+            method: .delete,
+            parameters: parameters,
+            encoding: encoder)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 if case .failure(let error) = response.result {
@@ -165,7 +170,7 @@ extension Client {
 
     @discardableResult
     public func download(url: URL, completion: @escaping (Data?) -> Void) -> DownloadRequest {
-        return AF.download(url).responseData { response in
+        return manager.download(url).responseData { response in
             if case .failure(let error) = response.result {
                 print("[DOWNLOAD]", error)
             }
@@ -179,7 +184,7 @@ extension Client {
                                      files: [MultiPartProtocol],
                                      progress: @escaping (_ progress: Double) -> Void,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return AF.upload(multipartFormData: { [weak self] multiPart in
+        return manager.upload(multipartFormData: { [weak self] multiPart in
             files.forEach { file in
                 guard let url = file.content.url else { return }
 
@@ -187,8 +192,8 @@ extension Client {
                                  withName: file.name,
                                  fileName: file.content.filename,
                                  mimeType: file.content.mimetype)
-                }
-                self?.generateMultipart(multiPart, with: parameters)
+            }
+            self?.generateMultipart(multiPart, with: parameters)
             }, to: "\(config.baseURL)/\(action)")
             .validate()
             .uploadProgress { value in

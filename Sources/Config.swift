@@ -20,6 +20,7 @@ open class Config: ConfigProtocol {
     open var baseURL: String {
         "http://localhost:8080"
     }
+    
     open var decoder: JSONDecoder {
         JSONDecoder()
     }
