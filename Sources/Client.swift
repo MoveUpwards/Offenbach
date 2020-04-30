@@ -227,9 +227,6 @@ extension Client {
                 progress(value.fractionCompleted)
         }
         .responseDecodable(of: T.self, decoder: config.decoder) { response in
-            if case .failure(let error) = response.result {
-                print("[MAPPING]", error)
-            }
             completion(response.result)
         }
     }
