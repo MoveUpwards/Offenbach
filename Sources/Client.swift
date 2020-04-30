@@ -74,6 +74,12 @@ open class Client: RequestInterceptor {
         completion(.success(urlRequest))
     }
 
+    private func request(for action: String, method: HTTPMethod) throws -> URLRequest {
+        var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
+        request.method = method
+        return request
+    }
+
     @discardableResult
     open func execute<T: Decodable>(request: URLRequestConvertible,
                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
@@ -81,7 +87,7 @@ open class Client: RequestInterceptor {
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 completion(response.result)
-            }
+        }
     }
 
     @discardableResult
@@ -91,22 +97,20 @@ open class Client: RequestInterceptor {
             .validate()
             .responseDecodable(of: [T].self, decoder: config.decoder) { response in
                 completion(response.result)
-            }
+        }
     }
 }
 
 extension Client {
-    
     @discardableResult
     public func list<T: Decodable>(action: String,
-                                   parameters: [String: String] = [:],
+                                   parameters: [String: String]? = nil,
                                    encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
         do {
-            var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-            request.method = .get
-            request = try encoder.encode(parameters, into: request)
-            return execute(request: request, completion: completion)
+            var req = try request(for: action, method: .get)
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -116,14 +120,13 @@ extension Client {
 
     @discardableResult
     public func get<T: Decodable>(action: String,
-                                  parameters: [String: String] = [:],
+                                  parameters: [String: String]? = nil,
                                   encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-            request.method = .get
-            request = try encoder.encode(parameters, into: request)
-            return execute(request: request, completion: completion)
+            var req = try request(for: action, method: .get)
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -133,30 +136,29 @@ extension Client {
 
     @discardableResult
     public func post<T: Decodable>(action: String,
-                                   parameters: Parameters = [:],
-                                   encoder: ParameterEncoding = JSONEncoding.default,
-                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
-            .validate()
-            .responseDecodable(of: T.self, decoder: config.decoder) { response in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
+                                   parameters: [String: String]? = nil,
+                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
+                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        do {
+            var req = try request(for: action, method: .post)
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
+        } catch let error {
+            completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
 
+        return nil
     }
 
     @discardableResult
     public func patch<T: Decodable>(action: String,
-                                    parameters: [String: String] = [:],
+                                    parameters: [String: String]? = nil,
                                     encoder: ParameterEncoder = JSONParameterEncoder.default,
                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-            request.method = .patch
-            request = try encoder.encode(parameters, into: request)
-            return execute(request: request, completion: completion)
+            var req = try request(for: action, method: .patch)
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -166,14 +168,13 @@ extension Client {
 
     @discardableResult
     public func put<T: Decodable>(action: String,
-                                  parameters: [String: String] = [:],
+                                  parameters: [String: String]? = nil,
                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-            request.method = .put
-            request = try encoder.encode(parameters, into: request)
-            return execute(request: request, completion: completion)
+            var req = try request(for: action, method: .put)
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -183,14 +184,13 @@ extension Client {
 
     @discardableResult
     public func delete<T: Decodable>(action: String,
-                                     parameters: [String: String] = [:],
+                                     parameters: [String: String]? = nil,
                                      encoder: ParameterEncoder = JSONParameterEncoder.default,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-            request.method = .delete
-            request = try encoder.encode(parameters, into: request)
-            return execute(request: request, completion: completion)
+            var req = try request(for: action, method: .delete)
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
