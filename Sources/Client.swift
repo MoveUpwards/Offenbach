@@ -9,197 +9,200 @@
 import Alamofire
 import Foundation
 
-public typealias Headers = [String: String]?
-
-open class Client {
+open class Client: RequestInterceptor {
+    
+    // MARK: - Private properties
+    
+    private var config: ConfigProtocol = Config(env: .develop)
+    private var token: String?
+    private var apiKey: String?
+    
     // MARK: Public functions
-
+    
+    public init() { }
+    
     public var baseUrl: String {
         return config.baseURL
     }
-
+    
     @discardableResult
     public func set(config: ConfigProtocol) -> Self {
         self.config = config
-
+        
         return self
     }
-
+    
     @discardableResult
     public func set(jwt: TokenProtocol?) -> Self {
-        guard let token = jwt?.token else {
-            return self
-        }
-
-        var headers = config.headers
-        headers?["Authorization"] = "Bearer \(token)"
-
-        configureManager(with: headers)
-        backgroundConfigureManager(with: headers)
-
+        self.token = jwt?.token
+        
         return self
     }
-
+    
     @discardableResult
     public func set(apiKey: TokenProtocol?) -> Self {
-        guard let token = apiKey?.token else {
-            return self
-        }
-
-        var headers = config.headers
-        headers?["apikey"] = token
-
-        configureManager(with: headers)
-        backgroundConfigureManager(with: headers)
-
+        self.apiKey = apiKey?.token
+        
         return self
     }
+    
+    open lazy var manager: Session = {
+        Session(interceptor: self,
+                redirectHandler: redirectionHandler(),
+                cachedResponseHandler: ResponseCacher(behavior: .cache))
+    }()
+    
+    open func redirectionHandler() -> Redirector {
+        return Redirector(behavior: .follow)
+    }
+    
+    open func adapt(_ urlRequest: URLRequest,
+                    for session: Session,
+                    completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        var urlRequest = urlRequest
+        
+        if let token = token {
+            urlRequest.headers.add(.authorization(bearerToken: token))
+        }
+        
+        if let key = apiKey {
+            urlRequest.headers.add(HTTPHeader(name: "apikey", value: key))
+        }
+        
+        config.headers.forEach { urlRequest.headers.add($0) }
+        
+        completion(.success(urlRequest))
+    }
+    
+    private func request<T: Decodable>(for action: String,
+                                       method: HTTPMethod,
+                                       parameters: [String: String]? = nil,
+                                       encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                       completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        do {
+            var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
+            req.method = method
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
+        } catch let error {
+            completion(.failure(error.asAFError(orFailWith: "unknown")))
+        }
+        
+        return nil
+    }
+}
 
+extension Client {
     @discardableResult
-    public func post<T: Decodable>(action: String,
-                                   parameters: Parameters = [:],
-                                   encoder: ParameterEncoding = JSONEncoding.default,
-                                   completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .post, parameters: parameters, encoding: encoder)
+    open func execute<T: Decodable>(request: URLRequestConvertible,
+                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
+        return manager.request(request)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
+            .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 completion(response.result)
         }
     }
-
+    
     @discardableResult
-    public func get<T: Decodable>(action: String,
-                                  parameters: Parameters = [:],
-                                  completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
+    open func execute<T: Decodable>(request: URLRequestConvertible,
+                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest {
+        return manager.request(request)
             .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
+            .responseDecodable(of: [T].self, decoder: config.decoder) { response in
                 completion(response.result)
         }
     }
-
+    
     @discardableResult
     public func list<T: Decodable>(action: String,
-                                   parameters: Parameters = [:],
-                                   completion: @escaping (Result<[T], Error>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .get, parameters: parameters)
-            .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<[T]>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
+                                   parameters: [String: String]? = nil,
+                                   encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                   completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
+        do {
+            var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
+            req.method = .get
+            req = try encoder.encode(parameters, into: req)
+            return execute(request: req, completion: completion)
+        } catch let error {
+            completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
+        
+        return nil
     }
-
+    
+    @discardableResult
+    public func get<T: Decodable>(action: String,
+                                  parameters: [String: String]? = nil,
+                                  encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .get, parameters: parameters, completion: completion)
+    }
+    
+    @discardableResult
+    public func post<T: Decodable>(action: String,
+                                   parameters: [String: String]? = nil,
+                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
+                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .post, parameters: parameters, completion: completion)
+    }
+    
     @discardableResult
     public func patch<T: Decodable>(action: String,
-                                    parameters: Parameters = [:],
-                                    encoder: ParameterEncoding = JSONEncoding.default,
-                                    completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .patch, parameters: parameters, encoding: encoder)
-            .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
-        }
+                                    parameters: [String: String]? = nil,
+                                    encoder: ParameterEncoder = JSONParameterEncoder.default,
+                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .patch, parameters: parameters, completion: completion)
     }
-
+    
     @discardableResult
     public func put<T: Decodable>(action: String,
-                                  parameters: Parameters = [:],
-                                  encoder: ParameterEncoding = JSONEncoding.default,
-                                  completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)", method: .put, parameters: parameters, encoding: encoder)
-            .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
-        }
+                                  parameters: [String: String]? = nil,
+                                  encoder: ParameterEncoder = JSONParameterEncoder.default,
+                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .put, parameters: parameters, completion: completion)
     }
-
+    
     @discardableResult
     public func delete<T: Decodable>(action: String,
-                                     parameters: Parameters = [:],
-                                     encoder: ParameterEncoding = JSONEncoding.default,
-                                     completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
-        return manager.request("\(config.baseURL)/\(action)",
-            method: .delete,
-            parameters: parameters,
-            encoding: encoder)
-            .validate()
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
-        }
+                                     parameters: [String: String]? = nil,
+                                     encoder: ParameterEncoder = JSONParameterEncoder.default,
+                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .delete, parameters: parameters, completion: completion)
     }
-
+    
     @discardableResult
     public func download(url: URL, completion: @escaping (Data?) -> Void) -> DownloadRequest {
         return manager.download(url).responseData { response in
-            if case .failure(let error) = response.result {
-                print("[DOWNLOAD]", error)
-            }
             completion(response.value)
         }
     }
-
+    
     @discardableResult
     public func upload<T: Decodable>(action: String,
                                      parameters: Parameters = [:],
                                      files: [MultiPartProtocol],
                                      progress: @escaping (_ progress: Double) -> Void,
-                                     completion: @escaping (Result<T, Error>) -> Void) -> DataRequest {
-        return backgroundManager
-            .upload(multipartFormData: { [weak self] multiPart in
-                files.forEach { file in
-                    guard let url = file.content.url else { return }
-                    
-                    multiPart.append(url,
-                                     withName: file.name,
-                                     fileName: file.content.filename,
-                                     mimeType: file.content.mimetype)
-                }
-                self?.generateMultipart(multiPart, with: parameters)
+                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
+        return manager.upload(multipartFormData: { [weak self] multiPart in
+            files.forEach { file in
+                guard let url = file.content.url else { return }
+                
+                multiPart.append(url,
+                                 withName: file.name,
+                                 fileName: file.content.filename,
+                                 mimeType: file.content.mimetype)
+            }
+            self?.generateMultipart(multiPart, with: parameters)
             }, to: "\(config.baseURL)/\(action)")
             .validate()
             .uploadProgress { value in
                 progress(value.fractionCompleted)
-            }
-            .responseDecodable(decoder: config.decoder) { (response: DataResponse<T>) in
-                if case .failure(let error) = response.result {
-                    print("[MAPPING]", error)
-                }
-                completion(response.result)
+        }
+        .responseDecodable(of: T.self, decoder: config.decoder) { response in
+            completion(response.result)
         }
     }
-
-    // MARK: - Private properties
-
-    private(set) var manager = Alamofire.Session.default
-    private(set) var backgroundManager = Alamofire.Session.default
-
-    private var config: ConfigProtocol = Config(env: .develop)
-
-    // MARK: Private functions
-
-    required public init() {
-        configureManager(with: config.headers)
-        backgroundConfigureManager(with: config.headers)
-    }
-
+    
     @discardableResult
     private func generateMultipart(_ multiPart: MultipartFormData, with params: Parameters) -> MultipartFormData {
         for (key, value) in params {
@@ -221,45 +224,7 @@ open class Client {
                 })
             }
         }
-
+        
         return multiPart
-    }
-
-    private func configureManager(with headers: [String: String]?) {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = headers
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        configuration.urlCache?.removeAllCachedResponses()
-
-        manager = Alamofire.Session(configuration: configuration,
-                                    delegate: Alamofire.SessionDelegate(),
-                                    redirectHandler: redirectionHandler(with: headers))
-    }
-
-    private func backgroundConfigureManager(with headers: [String: String]?) {
-        let identifier = "com.offenbach.background.transfert.\(UUID().uuidString)"
-        let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: identifier)
-        backgroundConfiguration.httpAdditionalHeaders = headers
-        backgroundConfiguration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        backgroundConfiguration.urlCache?.removeAllCachedResponses()
-
-        if #available(iOS 11.0, *) {
-            backgroundConfiguration.waitsForConnectivity = true
-        }
-
-        backgroundManager = Alamofire.Session(configuration: backgroundConfiguration,
-                                              delegate: Alamofire.SessionDelegate(),
-                                              redirectHandler: redirectionHandler(with: headers))
-    }
-
-    private func redirectionHandler(with headers: Headers) -> Redirector {
-        let redirect = Redirector(behavior: .modify({ _, request, _ -> URLRequest? in
-            var finalRequest = request
-            finalRequest.allHTTPHeaderFields = headers
-
-            return finalRequest
-        }))
-
-        return redirect
     }
 }

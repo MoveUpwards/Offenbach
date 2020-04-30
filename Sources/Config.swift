@@ -6,24 +6,19 @@
 //  Copyright © 2019 Move Upwards. All rights reserved.
 //
 
+import Alamofire
 import Foundation
 
 open class Config: ConfigProtocol {
-    open var headers: [String: String]? {
-        return [
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        ]
-    }
-    
-    open var baseURL: String {
-        return "http://localhost:8080"
-    }
+    open var headers: [HTTPHeader] { [.accept("application/json"), .contentType("application/json")] }
+
+    open var baseURL: String { "http://localhost:8080" }
 
     public let env: ApiEnvironment
-    public let decoder: JSONDecoder
+    
+    public let decoder: DataDecoder
 
-    public required init(env: ApiEnvironment, decoder: JSONDecoder = JSONDecoder()) {
+    public required init(env: ApiEnvironment, decoder: DataDecoder = JSONDecoder()) {
         self.env = env
         self.decoder = decoder
     }
