@@ -57,8 +57,8 @@ class ApiConfig: Config {
         "https://swapi.dev/api"
     }
 
-    required init(env: ApiEnvironment) {
-        super.init(env: env)
+    required init(env: ApiEnvironment, decoder: DataDecoder = JSONDecoder()) {
+        super.init(env: env, decoder: decoder)
     }
 }
 
@@ -99,9 +99,8 @@ class ViewController: UIViewController {
             .set(jwt: Token())
             .get(action: "films/") { (result: Result<Films, AFError>) in
                 switch result {
-                    case .success(let films):
-                        print(films.all)
-                    default: break
+                    case .success(let films): print(films.all)
+                    case .failure(let error): print(error)
                 }
             }
     }

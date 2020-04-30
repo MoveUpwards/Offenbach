@@ -10,24 +10,16 @@ import Alamofire
 import Foundation
 
 open class Config: ConfigProtocol {
-    open var headers: [HTTPHeader]? {
-        [
-            .accept("application/json"),
-            .contentType("application/json")
-        ]
-    }
-    
-    open var baseURL: String {
-        "http://localhost:8080"
-    }
-    
-    open var decoder: JSONDecoder {
-        JSONDecoder()
-    }
+    open var headers: [HTTPHeader] { [.accept("application/json"), .contentType("application/json")] }
+
+    open var baseURL: String { "http://localhost:8080" }
 
     public let env: ApiEnvironment
+    
+    public let decoder: DataDecoder
 
-    public required init(env: ApiEnvironment) {
+    public required init(env: ApiEnvironment, decoder: DataDecoder = JSONDecoder()) {
         self.env = env
+        self.decoder = decoder
     }
 }

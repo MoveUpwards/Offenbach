@@ -10,10 +10,10 @@ import Alamofire
 import Foundation
 
 public protocol ConfigProtocol {
-    var headers: [HTTPHeader]? { get }
+    var headers: [HTTPHeader] { get }
     var baseURL: String { get }
     var env: ApiEnvironment { get }
-    var decoder: JSONDecoder { get }
+    var decoder: DataDecoder { get }
 
-    init(env: ApiEnvironment)
+    init(env: ApiEnvironment, decoder: DataDecoder)
 }
