@@ -74,10 +74,15 @@ open class Client: RequestInterceptor {
         completion(.success(urlRequest))
     }
 
-    private func request(for action: String, method: HTTPMethod) throws -> URLRequest {
-        var request = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-        request.method = method
-        return request
+    private func request<T: Decodable>(for action: String,
+                                       method: HTTPMethod,
+                                       parameters: [String: String]? = nil,
+                                       encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                       completion: @escaping (Result<T, AFError>) -> Void) throws -> DataRequest {
+        var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
+        req.method = method
+        req = try encoder.encode(parameters, into: req)
+        return execute(request: req, completion: completion)
     }
 }
 
@@ -108,7 +113,8 @@ extension Client {
                                    encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
         do {
-            var req = try request(for: action, method: .get)
+            var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
+            req.method = .get
             req = try encoder.encode(parameters, into: req)
             return execute(request: req, completion: completion)
         } catch let error {
@@ -124,9 +130,7 @@ extension Client {
                                   encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var req = try request(for: action, method: .get)
-            req = try encoder.encode(parameters, into: req)
-            return execute(request: req, completion: completion)
+            return try request(for: action, method: .get, parameters: parameters, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -140,9 +144,7 @@ extension Client {
                                    encoder: ParameterEncoder = JSONParameterEncoder.default,
                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var req = try request(for: action, method: .post)
-            req = try encoder.encode(parameters, into: req)
-            return execute(request: req, completion: completion)
+            return try request(for: action, method: .post, parameters: parameters, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -156,9 +158,7 @@ extension Client {
                                     encoder: ParameterEncoder = JSONParameterEncoder.default,
                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var req = try request(for: action, method: .patch)
-            req = try encoder.encode(parameters, into: req)
-            return execute(request: req, completion: completion)
+            return try request(for: action, method: .patch, parameters: parameters, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -172,9 +172,7 @@ extension Client {
                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var req = try request(for: action, method: .put)
-            req = try encoder.encode(parameters, into: req)
-            return execute(request: req, completion: completion)
+            return try request(for: action, method: .put, parameters: parameters, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
@@ -188,9 +186,7 @@ extension Client {
                                      encoder: ParameterEncoder = JSONParameterEncoder.default,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
-            var req = try request(for: action, method: .delete)
-            req = try encoder.encode(parameters, into: req)
-            return execute(request: req, completion: completion)
+            return try request(for: action, method: .delete, parameters: parameters, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
