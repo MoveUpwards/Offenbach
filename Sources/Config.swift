@@ -12,8 +12,8 @@ import Foundation
 open class Config: ConfigProtocol {
     open var headers: [HTTPHeader]? {
         [
-            HTTPHeader(name: "Accept", value: "application/json"),
-            HTTPHeader(name: "Content-Type", value: "application/json")
+            .accept("application/json"),
+            .contentType("application/json")
         ]
     }
     
