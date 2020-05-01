@@ -6,6 +6,7 @@ let package = Package(
     name: "Offenbach",
     platforms: [
         .iOS(.v10),
+        .macOS(.v10_12)
     ],
     products: [
         .library(
@@ -14,7 +15,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .exact("5.0.0-beta.7"))
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.1.0"))
     ],
     targets: [
         .target(
