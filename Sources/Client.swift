@@ -90,9 +90,7 @@ open class Client: RequestInterceptor {
         
         return nil
     }
-}
-
-extension Client {
+    
     @discardableResult
     open func execute<T: Decodable>(request: URLRequestConvertible,
                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
@@ -102,7 +100,7 @@ extension Client {
                 completion(response.result)
         }
     }
-    
+
     @discardableResult
     open func execute<T: Decodable>(request: URLRequestConvertible,
                                     completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest {
@@ -112,7 +110,9 @@ extension Client {
                 completion(response.result)
         }
     }
-    
+}
+
+extension Client {
     @discardableResult
     public func list<T: Decodable>(action: String,
                                    parameters: [String: String]? = nil,
