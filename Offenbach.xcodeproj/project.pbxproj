@@ -589,7 +589,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOS";
 				PRODUCT_NAME = Offenbach;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -621,7 +621,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.moveupwards.Offenbach-iOS";
 				PRODUCT_NAME = Offenbach;
 				PROVISIONING_PROFILE_SPECIFIER = "";
