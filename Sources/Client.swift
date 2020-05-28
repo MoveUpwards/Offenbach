@@ -77,7 +77,7 @@ open class Client: RequestInterceptor {
     private func request<T: Decodable, U: Encodable>(for action: String,
                                                      method: HTTPMethod,
                                                      parameters: U? = nil,
-                                                     encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                                     encoder: ParameterEncoder,
                                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
             var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
@@ -114,10 +114,10 @@ open class Client: RequestInterceptor {
 
 extension Client {
     @discardableResult
-    public func list<T: Decodable, U: Encodable>(action: String,
-                                                 parameters: U? = nil,
-                                                 encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
-                                                 completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
+    public func list<T: Decodable>(action: String,
+                                   parameters: [String: String]? = nil,
+                                   encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                   completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
         do {
             var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
             req.method = .get
@@ -131,43 +131,43 @@ extension Client {
     }
     
     @discardableResult
-    public func get<T: Decodable, U: Encodable>(action: String,
-                                                parameters: U? = nil,
-                                                encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
-                                                completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        return request(for: action, method: .get, parameters: parameters, completion: completion)
+    public func get<T: Decodable>(action: String,
+                                  parameters: [String: String]? = nil,
+                                  encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .get, parameters: parameters, encoder: encoder, completion: completion)
     }
     
     @discardableResult
     public func post<T: Decodable, U: Encodable>(action: String,
-                                                 parameters: U? = nil,
+                                                 parameters: U,
                                                  encoder: ParameterEncoder = JSONParameterEncoder.default,
                                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        return request(for: action, method: .post, parameters: parameters, completion: completion)
+        return request(for: action, method: .post, parameters: parameters, encoder: encoder, completion: completion)
     }
     
     @discardableResult
     public func patch<T: Decodable, U: Encodable>(action: String,
-                                                  parameters: U? = nil,
+                                                  parameters: U,
                                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
                                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        return request(for: action, method: .patch, parameters: parameters, completion: completion)
+        return request(for: action, method: .patch, parameters: parameters, encoder: encoder, completion: completion)
     }
     
     @discardableResult
     public func put<T: Decodable, U: Encodable>(action: String,
-                                                parameters: U? = nil,
+                                                parameters: U,
                                                 encoder: ParameterEncoder = JSONParameterEncoder.default,
                                                 completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        return request(for: action, method: .put, parameters: parameters, completion: completion)
+        return request(for: action, method: .put, parameters: parameters, encoder: encoder, completion: completion)
     }
     
     @discardableResult
-    public func delete<T: Decodable, U: Encodable>(action: String,
-                                                   parameters: U? = nil,
-                                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
-                                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        return request(for: action, method: .delete, parameters: parameters, completion: completion)
+    public func delete<T: Decodable>(action: String,
+                                     parameters: [String: String]? = nil,
+                                     encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+        return request(for: action, method: .delete, parameters: parameters, encoder: encoder, completion: completion)
     }
     
     @discardableResult
