@@ -6,7 +6,7 @@ let package = Package(
     name: "Offenbach",
     platforms: [
         .iOS(.v10),
-        .macOS(.v10_12)
+        .macOS(.v10_13)
     ],
     products: [
         .library(
