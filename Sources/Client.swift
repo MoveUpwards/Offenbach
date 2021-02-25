@@ -48,7 +48,11 @@ open class Client: RequestInterceptor {
     }
     
     open lazy var manager: Session = {
-        Session(interceptor: self,
+        let a = URLSessionConfiguration()
+        if #available(iOS 11.0, *) {
+            a.waitsForConnectivity = true
+        }
+        return Session(configuration: a, interceptor: self,
                 redirectHandler: redirectionHandler(),
                 cachedResponseHandler: ResponseCacher(behavior: .cache))
     }()
