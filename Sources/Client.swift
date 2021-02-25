@@ -48,13 +48,15 @@ open class Client: RequestInterceptor {
     }
     
     open lazy var manager: Session = {
-        let a = URLSessionConfiguration()
+        let config = URLSessionConfiguration.default
         if #available(iOS 11.0, *) {
-            a.waitsForConnectivity = true
+            config.waitsForConnectivity = true
         }
-        return Session(configuration: a, interceptor: self,
-                redirectHandler: redirectionHandler(),
-                cachedResponseHandler: ResponseCacher(behavior: .cache))
+        config.timeoutIntervalForResource = 300
+
+        return Session(configuration: config, interceptor: self,
+                              redirectHandler: redirectionHandler(),
+                              cachedResponseHandler: ResponseCacher(behavior: .cache))
     }()
     
     open func redirectionHandler() -> Redirector {
