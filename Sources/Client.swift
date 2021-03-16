@@ -189,9 +189,10 @@ extension Client {
     
     @discardableResult
     public func upload<T: Decodable>(action: String,
+                                     method: HTTPMethod = .post,
                                      parameters: Parameters = [:],
                                      files: [MultiPartProtocol],
-                                     progress: @escaping (_ progress: Double) -> Void,
+                                     progress: ((_ progress: Double) -> Void)?,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         manager.upload(multipartFormData: { [weak self] multiPart in
             files.forEach { file in
@@ -203,9 +204,9 @@ extension Client {
                                  mimeType: file.content.mimetype)
             }
                 self?.generateMultipart(multiPart, with: parameters)
-            }, to: "\(config.baseURL)/\(action)")
+            }, to: "\(config.baseURL)/\(action)", method: method)
             .validate()
-            .uploadProgress { value in progress(value.fractionCompleted) }
+            .uploadProgress { value in progress?(value.fractionCompleted) }
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 completion(response.result)
             }
