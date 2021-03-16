@@ -192,7 +192,7 @@ extension Client {
                                      method: HTTPMethod = .post,
                                      parameters: Parameters = [:],
                                      files: [MultiPartProtocol],
-                                     progress: ((_ progress: Double) -> Void)?,
+                                     progress: ((_ progress: Double) -> Void)? = nil,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
         manager.upload(multipartFormData: { [weak self] multiPart in
             files.forEach { file in
