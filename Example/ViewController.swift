@@ -44,6 +44,7 @@ struct Film: Decodable {
 
 struct Token: TokenProtocol {
     var token: String? = "valid-jwt"
+    var refresh: String? = "valid-jwt-refresh-token"
 }
 
 class ApiClient: Client {

@@ -11,4 +11,7 @@ import Foundation
 public protocol TokenProtocol: Decodable {
     /// The authentication jwt token
     var token: String? { get set }
+
+    /// The authentication jwt refresh token
+    var refresh: String? { get set }
 }
