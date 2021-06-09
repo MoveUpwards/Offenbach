@@ -129,25 +129,6 @@ open class Client: RequestInterceptor {
 
 extension Client {
     @discardableResult
-    public func list<T: Decodable>(action: String,
-                                   parameters: [String: String]? = nil,
-                                   cachePolicy: URLRequest.CachePolicy? = nil,
-                                   encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
-                                   completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
-        do {
-            var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
-            req.method = .get
-            req.cachePolicy = cachePolicy ?? config.configuration.requestCachePolicy
-            req = try encoder.encode(parameters, into: req)
-            return execute(request: req, completion: completion)
-        } catch let error {
-            completion(.failure(error.asAFError(orFailWith: "unknown")))
-        }
-
-        return nil
-    }
-    
-    @discardableResult
     public func get<T: Decodable>(action: String,
                                   parameters: [String: String]? = nil,
                                   cachePolicy: URLRequest.CachePolicy? = nil,
