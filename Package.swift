@@ -23,10 +23,5 @@ let package = Package(
             dependencies: ["Alamofire"],
             path: "Sources"
         ),
-        .testTarget(
-            name: "OffenbachTests",
-            dependencies: ["Offenbach"],
-            path: "Tests"
-        ),
     ]
 )

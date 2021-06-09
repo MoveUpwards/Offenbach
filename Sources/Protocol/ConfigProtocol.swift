@@ -14,6 +14,7 @@ public protocol ConfigProtocol {
     var baseURL: String { get }
     var env: ApiEnvironment { get }
     var decoder: DataDecoder { get }
+    var configuration: URLSessionConfiguration { get }
 
     init(env: ApiEnvironment, decoder: DataDecoder)
 }

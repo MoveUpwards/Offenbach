@@ -48,18 +48,21 @@ open class Client: RequestInterceptor {
     }
     
     open lazy var manager: Session = {
-        Session(configuration: configuration,
+        Session(configuration: config.configuration,
                 interceptor: self,
                 redirectHandler: redirectionHandler,
-                cachedResponseHandler: ResponseCacher(behavior: .cache))
+                cachedResponseHandler: cachedResponseHandler)
     }()
 
-    open var configuration: URLSessionConfiguration {
-        let config = URLSessionConfiguration.default
-        if #available(iOS 11.0, *) { config.waitsForConnectivity = true }
-        config.timeoutIntervalForResource = 300
-
-        return config
+    open var cachedResponseHandler: ResponseCacher {
+        ResponseCacher(behavior: .modify { _, response in
+          let userInfo = ["date": Date()]
+          return CachedURLResponse(
+            response: response.response,
+            data: response.data,
+            userInfo: userInfo,
+            storagePolicy: .allowed)
+        })
     }
     
     open var redirectionHandler: Redirector {
@@ -86,12 +89,14 @@ open class Client: RequestInterceptor {
     
     private func request<T: Decodable, U: Encodable>(for action: String,
                                                      method: HTTPMethod,
+                                                     cachePolicy: URLRequest.CachePolicy? = nil,
                                                      parameters: U? = nil,
                                                      encoder: ParameterEncoder,
                                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
         do {
             var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
             req.method = method
+            req.cachePolicy = cachePolicy ?? config.configuration.requestCachePolicy
             req = try encoder.encode(parameters, into: req)
             return execute(request: req, completion: completion)
         } catch let error {
@@ -126,26 +131,34 @@ extension Client {
     @discardableResult
     public func list<T: Decodable>(action: String,
                                    parameters: [String: String]? = nil,
+                                   cachePolicy: URLRequest.CachePolicy? = nil,
                                    encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest? {
         do {
             var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
             req.method = .get
+            req.cachePolicy = cachePolicy ?? config.configuration.requestCachePolicy
             req = try encoder.encode(parameters, into: req)
             return execute(request: req, completion: completion)
         } catch let error {
             completion(.failure(error.asAFError(orFailWith: "unknown")))
         }
-        
+
         return nil
     }
     
     @discardableResult
     public func get<T: Decodable>(action: String,
                                   parameters: [String: String]? = nil,
+                                  cachePolicy: URLRequest.CachePolicy? = nil,
                                   encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        request(for: action, method: .get, parameters: parameters, encoder: encoder, completion: completion)
+        request(for: action,
+                method: .get,
+                cachePolicy: cachePolicy,
+                parameters: parameters,
+                encoder: encoder,
+                completion: completion)
     }
     
     @discardableResult
@@ -153,7 +166,12 @@ extension Client {
                                                  parameters: U,
                                                  encoder: ParameterEncoder = JSONParameterEncoder.default,
                                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        request(for: action, method: .post, parameters: parameters, encoder: encoder, completion: completion)
+        request(for: action,
+                method: .post,
+                cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                parameters: parameters,
+                encoder: encoder,
+                completion: completion)
     }
     
     @discardableResult
@@ -161,7 +179,12 @@ extension Client {
                                                   parameters: U,
                                                   encoder: ParameterEncoder = JSONParameterEncoder.default,
                                                   completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        request(for: action, method: .patch, parameters: parameters, encoder: encoder, completion: completion)
+        request(for: action,
+                method: .patch,
+                cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                parameters: parameters,
+                encoder: encoder,
+                completion: completion)
     }
     
     @discardableResult
@@ -169,7 +192,12 @@ extension Client {
                                                 parameters: U,
                                                 encoder: ParameterEncoder = JSONParameterEncoder.default,
                                                 completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        request(for: action, method: .put, parameters: parameters, encoder: encoder, completion: completion)
+        request(for: action,
+                method: .put,
+                cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                parameters: parameters,
+                encoder: encoder,
+                completion: completion)
     }
     
     @discardableResult
@@ -177,12 +205,19 @@ extension Client {
                                      parameters: [String: String]? = nil,
                                      encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
                                      completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
-        request(for: action, method: .delete, parameters: parameters, encoder: encoder, completion: completion)
+        request(for: action,
+                method: .delete,
+                cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                parameters: parameters,
+                encoder: encoder,
+                completion: completion)
     }
     
     @discardableResult
-    public func download(url: URL, completion: @escaping (Data?) -> Void) -> DownloadRequest {
-        manager.download(url).responseData { response in
+    public func download(url: URL,
+                         cacheResponse: ResponseCacher = ResponseCacher(behavior: .cache),
+                         completion: @escaping (Data?) -> Void) -> DownloadRequest {
+        manager.download(url).cacheResponse(using: ResponseCacher(behavior: .doNotCache)).responseData { response in
             completion(response.value)
         }
     }
@@ -206,6 +241,7 @@ extension Client {
                 self?.generateMultipart(multiPart, with: parameters)
             }, to: "\(config.baseURL)/\(action)", method: method)
             .validate()
+            .cacheResponse(using: ResponseCacher(behavior: .doNotCache))
             .uploadProgress { value in progress?(value.fractionCompleted) }
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
                 completion(response.result)
