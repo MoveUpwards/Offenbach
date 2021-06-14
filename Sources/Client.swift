@@ -15,8 +15,8 @@ open class Client: RequestInterceptor {
     
     public private(set) var config: ConfigProtocol = Config(env: .develop)
     
-    private var token: String?
-    private var apiKey: String?
+    public private(set) var token: String?
+    public private(set) var apiKey: String?
     
     // MARK: Public functions
     
