@@ -15,8 +15,8 @@ open class Client: RequestInterceptor {
     
     public private(set) var config: ConfigProtocol = Config(env: .develop)
     
-    private var token: String?
-    private var apiKey: String?
+    public private(set) var token: TokenProtocol?
+    public private(set) var apiKey: String?
     
     // MARK: Public functions
     
@@ -35,7 +35,7 @@ open class Client: RequestInterceptor {
     
     @discardableResult
     public func set(jwt: TokenProtocol?) -> Self {
-        self.token = jwt?.token
+        self.token = jwt
         
         return self
     }
@@ -74,7 +74,7 @@ open class Client: RequestInterceptor {
                     completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
         
-        if let token = token {
+        if let token = token?.token {
             urlRequest.headers.add(.authorization(bearerToken: token))
         }
         
@@ -85,6 +85,12 @@ open class Client: RequestInterceptor {
         config.headers.forEach { urlRequest.headers.add($0) }
         
         completion(.success(urlRequest))
+    }
+
+    open func retry(_ request: Request,
+                    for session: Session,
+                    dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        completion(.doNotRetry)
     }
     
     private func request<T: Decodable, U: Encodable>(for action: String,
