@@ -27,7 +27,7 @@ public protocol FileProtocol {
     /// Save file to disk at the given URL.
     func save() throws
 
-    init(data: Data, filename: String, mimetype: String, date: Date) throws
+    init(data: Data, filename: String, mimetype: String, date: Date)
 }
 
 public extension FileProtocol {
