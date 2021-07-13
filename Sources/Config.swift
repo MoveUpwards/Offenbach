@@ -14,6 +14,8 @@ open class Config: ConfigProtocol {
 
     open var baseURL: String { "http://localhost:8080" }
 
+    open var evaluators: [String: ServerTrustEvaluating] { [:] }
+
     open var configuration: URLSessionConfiguration {
         let config = URLSessionConfiguration.default
         if #available(iOS 11.0, *) { config.waitsForConnectivity = true }

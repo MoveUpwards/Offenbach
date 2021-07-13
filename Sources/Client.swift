@@ -50,14 +50,10 @@ open class Client: RequestInterceptor {
     open lazy var manager: Session = {
         Session(configuration: config.configuration,
                 interceptor: self,
-                serverTrustManager: ServerTrustManager(evaluators: evaluators),
+                serverTrustManager: ServerTrustManager(evaluators: config.evaluators),
                 redirectHandler: redirectionHandler,
                 cachedResponseHandler: cachedResponseHandler)
     }()
-
-    open var evaluators: [String: ServerTrustEvaluating] {
-        [:]
-    }
 
     open var cachedResponseHandler: ResponseCacher {
         ResponseCacher(behavior: .modify { _, response in
