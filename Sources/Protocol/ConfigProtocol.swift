@@ -15,6 +15,7 @@ public protocol ConfigProtocol {
     var env: ApiEnvironment { get }
     var decoder: DataDecoder { get }
     var configuration: URLSessionConfiguration { get }
+    var evaluators: [String: ServerTrustEvaluating] { get }
 
     init(env: ApiEnvironment, decoder: DataDecoder)
 }
