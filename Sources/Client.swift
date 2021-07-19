@@ -122,16 +122,6 @@ open class Client: RequestInterceptor {
                 completion(response.result)
         }
     }
-
-    @discardableResult
-    open func execute<T: Decodable>(request: URLRequestConvertible,
-                                    completion: @escaping (Result<[T], AFError>) -> Void) -> DataRequest {
-        manager.request(request)
-            .validate()
-            .responseDecodable(of: [T].self, decoder: config.decoder) { response in
-                completion(response.result)
-        }
-    }
 }
 
 extension Client {
