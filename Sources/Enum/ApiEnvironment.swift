@@ -8,6 +8,7 @@
 import Foundation
 
 public enum ApiEnvironment {
+    case custom(String)
     case develop
     case staging
     case production
