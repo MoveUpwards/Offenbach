@@ -19,7 +19,6 @@ open class Config: ConfigProtocol {
     open var configuration: URLSessionConfiguration {
         let config = URLSessionConfiguration.default
         if #available(iOS 11.0, *) { config.waitsForConnectivity = true }
-        config.timeoutIntervalForResource = 300
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         
         return config
