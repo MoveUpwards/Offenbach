@@ -48,11 +48,13 @@ open class Client: RequestInterceptor {
     }
     
     open lazy var manager: Session = {
-        Session(configuration: config.configuration,
-                interceptor: self,
-                serverTrustManager: ServerTrustManager(evaluators: config.evaluators),
-                redirectHandler: redirectionHandler,
-                cachedResponseHandler: cachedResponseHandler)
+        Session(
+            configuration: config.configuration,
+            interceptor: self,
+            serverTrustManager: ServerTrustManager(evaluators: config.evaluators),
+            redirectHandler: redirectionHandler,
+            cachedResponseHandler: cachedResponseHandler
+        )
     }()
 
     open var cachedResponseHandler: ResponseCacher {
@@ -70,9 +72,11 @@ open class Client: RequestInterceptor {
         Redirector(behavior: .follow)
     }
     
-    open func adapt(_ urlRequest: URLRequest,
-                    for session: Session,
-                    completion: @escaping (Result<URLRequest, Error>) -> Void) {
+    open func adapt(
+        _ urlRequest: URLRequest,
+        for session: Session,
+        completion: @escaping (Result<URLRequest, Error>) -> Void
+    ) {
         var urlRequest = urlRequest
         
         if let token = token?.token {
@@ -94,12 +98,14 @@ open class Client: RequestInterceptor {
         completion(.doNotRetry)
     }
     
-    private func request<T: Decodable, U: Encodable>(for action: String,
-                                                     method: HTTPMethod,
-                                                     cachePolicy: URLRequest.CachePolicy? = nil,
-                                                     parameters: U? = nil,
-                                                     encoder: ParameterEncoder,
-                                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+    private func request<T: Decodable, U: Encodable>(
+        for action: String,
+        method: HTTPMethod,
+        cachePolicy: URLRequest.CachePolicy? = nil,
+        parameters: U? = nil,
+        encoder: ParameterEncoder,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest? {
         do {
             var req = URLRequest(url: try "\(config.baseURL)/\(action)".asURL())
             req.method = method
@@ -114,8 +120,10 @@ open class Client: RequestInterceptor {
     }
     
     @discardableResult
-    open func execute<T: Decodable>(request: URLRequestConvertible,
-                                    completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
+    open func execute<T: Decodable>(
+        request: URLRequestConvertible,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest {
         manager.request(request)
             .validate()
             .responseDecodable(of: T.self, decoder: config.decoder) { response in
@@ -126,11 +134,13 @@ open class Client: RequestInterceptor {
 
 extension Client {
     @discardableResult
-    public func get<T: Decodable>(action: String,
-                                  parameters: [String: String]? = nil,
-                                  cachePolicy: URLRequest.CachePolicy? = nil,
-                                  encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
-                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+    public func get<T: Decodable>(
+        action: String,
+        parameters: [String: String]? = nil,
+        cachePolicy: URLRequest.CachePolicy? = nil,
+        encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest? {
         request(for: action,
                 method: .get,
                 cachePolicy: cachePolicy,
@@ -140,10 +150,12 @@ extension Client {
     }
     
     @discardableResult
-    public func post<T: Decodable, U: Encodable>(action: String,
-                                                 parameters: U,
-                                                 encoder: ParameterEncoder = JSONParameterEncoder.default,
-                                                 completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+    public func post<T: Decodable, U: Encodable>(
+        action: String,
+        parameters: U,
+        encoder: ParameterEncoder = JSONParameterEncoder.default,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest? {
         request(for: action,
                 method: .post,
                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -153,10 +165,12 @@ extension Client {
     }
     
     @discardableResult
-    public func patch<T: Decodable, U: Encodable>(action: String,
-                                                  parameters: U,
-                                                  encoder: ParameterEncoder = JSONParameterEncoder.default,
-                                                  completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+    public func patch<T: Decodable, U: Encodable>(
+        action: String,
+        parameters: U,
+        encoder: ParameterEncoder = JSONParameterEncoder.default,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest? {
         request(for: action,
                 method: .patch,
                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -166,10 +180,12 @@ extension Client {
     }
     
     @discardableResult
-    public func put<T: Decodable, U: Encodable>(action: String,
-                                                parameters: U,
-                                                encoder: ParameterEncoder = JSONParameterEncoder.default,
-                                                completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+    public func put<T: Decodable, U: Encodable>(
+        action: String,
+        parameters: U,
+        encoder: ParameterEncoder = JSONParameterEncoder.default,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest? {
         request(for: action,
                 method: .put,
                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -179,10 +195,12 @@ extension Client {
     }
     
     @discardableResult
-    public func delete<T: Decodable>(action: String,
-                                     parameters: [String: String]? = nil,
-                                     encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
-                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest? {
+    public func delete<T: Decodable>(
+        action: String,
+        parameters: [String: String]? = nil,
+        encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest? {
         request(for: action,
                 method: .delete,
                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -192,32 +210,60 @@ extension Client {
     }
     
     @discardableResult
-    public func download(url: URL,
-                         cacheResponse: ResponseCacher = ResponseCacher(behavior: .cache),
-                         completion: @escaping (Data?) -> Void) -> DownloadRequest {
+    public func download(
+        url: URL,
+        cacheResponse: ResponseCacher = ResponseCacher(behavior: .cache),
+        completion: @escaping (Data?) -> Void
+    ) -> DownloadRequest {
         manager.download(url).cacheResponse(using: ResponseCacher(behavior: .doNotCache)).responseData { response in
             completion(response.value)
         }
     }
+
+    @discardableResult
+    public func upload(
+        file: URL,
+        to destination: URL,
+        method: HTTPMethod = .post,
+        requestModifier: ((inout URLRequest) throws -> Void)? = nil,
+        progress: ((Double) -> Void)? = nil,
+        completion: @escaping (Result<Alamofire.Empty, AFError>) -> Void
+    ) -> DataRequest {
+        manager
+            .upload(file, to: destination.absoluteString, method: method, requestModifier: requestModifier)
+            .validate()
+            .cacheResponse(using: ResponseCacher(behavior: .doNotCache))
+            .uploadProgress { value in progress?(value.fractionCompleted) }
+            .response { response in
+                switch response.result {
+                    case.success: completion(.success(.emptyValue()))
+                    case.failure(let error): completion(.failure(error))
+                }
+            }
+    }
     
     @discardableResult
-    public func upload<T: Decodable>(action: String,
-                                     method: HTTPMethod = .post,
-                                     parameters: Parameters = [:],
-                                     files: [MultiPartProtocol],
-                                     progress: ((_ progress: Double) -> Void)? = nil,
-                                     completion: @escaping (Result<T, AFError>) -> Void) -> DataRequest {
+    public func upload<T: Decodable>(
+        action: String,
+        method: HTTPMethod = .post,
+        parameters: Parameters = [:],
+        files: [MultiPartProtocol],
+        progress: ((_ progress: Double) -> Void)? = nil,
+        completion: @escaping (Result<T, AFError>) -> Void
+    ) -> DataRequest {
         manager.upload(multipartFormData: { [weak self] multiPart in
             files.forEach { file in
                 guard let url = file.content.url else { return }
-                
-                multiPart.append(url,
-                                 withName: file.name,
-                                 fileName: file.content.filename,
-                                 mimeType: file.content.mimetype)
+
+                multiPart.append(
+                    url,
+                    withName: file.name,
+                    fileName: file.content.filename,
+                    mimeType: file.content.mimetype
+                )
             }
-                self?.generateMultipart(multiPart, with: parameters)
-            }, to: "\(config.baseURL)/\(action)", method: method)
+            self?.generateMultipart(multiPart, with: parameters)
+        }, to: "\(config.baseURL)/\(action)", method: method)
             .validate()
             .cacheResponse(using: ResponseCacher(behavior: .doNotCache))
             .uploadProgress { value in progress?(value.fractionCompleted) }
