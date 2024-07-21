@@ -1,11 +1,11 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.10
 
 import PackageDescription
 
 let package = Package(
     name: "Offenbach",
     platforms: [
-        .iOS(.v10),
+        .iOS(.v12),
         .macOS(.v10_13)
     ],
     products: [
